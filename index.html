@@ -3,289 +3,335 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔓 Delta Key Bypasser Web v2 | Bos Script</title>
+    <title>🚀 Ultimate Link Bypasser | Bos Script</title>
     <style>
-        /* Sama seperti sebelumnya, tidak diubah */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #0e0e16, #1c1c2a);
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(145deg, #0b0e14 0%, #1a1f2c 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
         }
-        .container {
-            background: rgba(20, 25, 38, 0.8);
+        .glass-card {
+            background: rgba(20, 28, 40, 0.75);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 255, 200, 0.2);
-            border-radius: 36px;
+            border: 1px solid rgba(0, 255, 200, 0.18);
+            border-radius: 40px;
             padding: 40px 35px;
-            max-width: 620px;
+            max-width: 680px;
             width: 100%;
-            box-shadow: 0 30px 50px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,255,200,0.1) inset;
+            box-shadow: 0 30px 50px rgba(0,0,0,0.7), 0 0 0 1px rgba(0,255,200,0.1) inset;
             text-align: center;
         }
-        h1 { color: white; font-weight: 700; font-size: 2.4rem; margin-bottom: 5px; }
-        h1 span { background: linear-gradient(135deg, #00ffcc, #3a86ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .badge { display: inline-block; background: rgba(0,255,200,0.1); color: #a0d0ff; padding: 6px 16px; border-radius: 40px; font-size: 0.8rem; margin-bottom: 25px; border: 1px solid rgba(0,255,200,0.2); }
-        .input-group { display: flex; gap: 10px; margin-bottom: 15px; }
-        input { flex: 1; padding: 16px 18px; border: none; border-radius: 50px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255,255,255,0.1); color: white; font-size: 0.95rem; outline: none; }
-        input:focus { border-color: #00ffcc; box-shadow: 0 0 15px rgba(0, 255, 200, 0.2); }
-        input::placeholder { color: #8a9ab0; }
-        button { padding: 16px 22px; border: none; border-radius: 50px; background: linear-gradient(145deg, #00ccaa, #2a6fdb); color: white; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: 0.15s; box-shadow: 0 5px 15px rgba(0, 200, 200, 0.2); border: 1px solid rgba(255,255,255,0.1); white-space: nowrap; }
-        button:hover { transform: translateY(-1px); box-shadow: 0 10px 20px rgba(0, 255, 200, 0.3); }
-        .secondary-btn { background: #2a3a50; box-shadow: none; }
-        .secondary-btn:hover { background: #3a4a65; }
-        .action-bar { display: flex; gap: 10px; margin: 15px 0 20px; }
-        .result-panel { background: rgba(0,0,0,0.3); border-radius: 24px; padding: 22px; border-left: 6px solid #00ffcc; text-align: left; }
-        .label { color: #aac0d0; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
-        .key-box { display: flex; align-items: center; gap: 12px; background: #0f1620; padding: 12px 18px; border-radius: 18px; border: 1px solid #2a4050; margin-bottom: 15px; }
-        #keyDisplay { flex: 1; color: #00ffcc; font-family: 'SF Mono', 'Menlo', monospace; font-size: 1.1rem; font-weight: 500; word-break: break-all; }
-        .copy-small { background: #1e3347; padding: 8px 16px; border-radius: 30px; font-size: 0.8rem; box-shadow: none; }
-        .destination-link { color: #7ab0ff; text-decoration: none; word-break: break-all; font-size: 0.9rem; display: block; margin: 10px 0 15px; }
-        .destination-link:hover { text-decoration: underline; }
-        .error-text { color: #ff8090; margin-top: 5px; }
-        .footer-note { margin-top: 20px; color: #6a7a8a; font-size: 0.75rem; }
-        .info-tip { background: rgba(255,200,0,0.1); border-radius: 12px; padding: 10px; margin-top: 15px; color: #ffd966; font-size: 0.8rem; border: 1px solid #ffd96633; }
+        h1 {
+            color: white;
+            font-weight: 700;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #00ffcc, #4d9eff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .sub {
+            color: #a5b9d0;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+        .input-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        input {
+            flex: 1;
+            padding: 18px 22px;
+            border: none;
+            border-radius: 60px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.2s;
+        }
+        input:focus {
+            border-color: #00ffcc;
+            box-shadow: 0 0 20px rgba(0,255,200,0.2);
+        }
+        input::placeholder { color: #8090a0; }
+        button {
+            padding: 18px 28px;
+            border: none;
+            border-radius: 60px;
+            background: linear-gradient(145deg, #00c8a0, #2a6fdb);
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.15s;
+            box-shadow: 0 8px 20px rgba(0,200,200,0.25);
+            border: 1px solid rgba(255,255,255,0.15);
+            white-space: nowrap;
+        }
+        button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 28px rgba(0,255,200,0.4);
+        }
+        button:disabled {
+            opacity: 0.6;
+            transform: none;
+            cursor: not-allowed;
+        }
+        .action-row {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0 20px;
+        }
+        .sec-btn {
+            background: #253544;
+            box-shadow: none;
+            font-weight: 500;
+        }
+        .sec-btn:hover { background: #31495e; }
+        .result-area {
+            background: rgba(0,0,0,0.3);
+            border-radius: 28px;
+            padding: 25px;
+            border-left: 6px solid #00ffcc;
+            text-align: left;
+            margin-top: 20px;
+        }
+        .label {
+            color: #b0c7dd;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+        }
+        .link-box {
+            background: #0e1622;
+            padding: 16px 20px;
+            border-radius: 20px;
+            border: 1px solid #2e4a60;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        #resultLink {
+            flex: 1;
+            color: #00ffcc;
+            font-family: 'SF Mono', monospace;
+            font-size: 1.05rem;
+            word-break: break-all;
+            text-decoration: none;
+        }
+        #resultLink:hover { text-decoration: underline; }
+        .copy-icon {
+            background: #1d3448;
+            padding: 10px 18px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.1s;
+            border: none;
+            color: white;
+        }
+        .copy-icon:hover { background: #2a4a64; }
+        .error-message {
+            color: #ff8a9a;
+            margin-top: 10px;
+        }
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.2);
+            border-top-color: #00ffcc;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-right: 8px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .footer {
+            margin-top: 25px;
+            color: #6f859c;
+            font-size: 0.8rem;
+        }
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin: 20px 0 10px;
+        }
+        .badge {
+            background: rgba(255,255,255,0.03);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            color: #b0c2d6;
+            border: 1px solid #2a4055;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🔐 <span>Delta</span> Bypasser v2</h1>
-        <div class="badge">loot-link.com • platoboost.com • platorelay.com</div>
+    <div class="glass-card">
+        <h1>🔓 <span class="gradient-text">Bypass</span> All</h1>
+        <div class="sub">Tempel link shortener, langsung tembus</div>
+        
+        <div class="badge-container">
+            <span class="badge">Linkvertise</span>
+            <span class="badge">LootLabs</span>
+            <span class="badge">Rekonise</span>
+            <span class="badge">Pastebin</span>
+            <span class="badge">Platoboost</span>
+            <span class="badge">Sub2Get</span>
+            <span class="badge">+40 lainnya</span>
+        </div>
         
         <div class="input-group">
-            <input type="text" id="urlInput" placeholder="https://auth.platorelay.com/a?d=..." autocomplete="off" />
-            <button id="decodeBtn">Decode</button>
+            <input type="text" id="urlInput" placeholder="https://linkvertise.com/xxx" autocomplete="off" />
+            <button id="bypassBtn">🚀 Bypass</button>
         </div>
         
-        <div class="action-bar">
-            <button id="pasteBtn" class="secondary-btn">📋 Paste</button>
-            <button id="clearBtn" class="secondary-btn">🗑️ Clear</button>
+        <div class="action-row">
+            <button id="pasteBtn" class="sec-btn">📋 Paste</button>
+            <button id="clearBtn" class="sec-btn">🗑️ Clear</button>
+            <button id="demoBtn" class="sec-btn">🔗 Demo</button>
         </div>
         
-        <div id="resultPanel" class="result-panel" style="display: none;">
-            <div class="label">🔑 Decoded Result</div>
-            <div class="key-box">
-                <span id="keyDisplay">-</span>
-                <button id="copyKeyBtn" class="copy-small">Copy</button>
+        <div id="resultContainer" style="display: none;" class="result-area">
+            <div class="label">🔗 Link Asli</div>
+            <div class="link-box">
+                <a href="#" target="_blank" id="resultLink">-</a>
+                <button id="copyResultBtn" class="copy-icon">Copy</button>
             </div>
-            <div>
-                <span class="label" style="display: block; margin-top: 5px;">🔗 Destination URL (if decoded)</span>
-                <a href="#" id="destinationLink" class="destination-link" target="_blank">-</a>
-            </div>
-            <button id="goBtn" style="width: 100%; margin-top: 12px;">🚀 Go to Destination</button>
-            <div id="errorMsg" class="error-text"></div>
-            <div class="info-tip" id="infoTip">
-                💡 Link dengan parameter 'd' menggunakan base64url. Hasil decode mungkin masih terenkripsi dan memerlukan langkah lanjutan.
-            </div>
+            <button id="goBtn" style="width:100%; margin-top:8px; background:#1e3a4a;">🌐 Buka Link</button>
+            <div id="errorMsg" class="error-message"></div>
         </div>
         
-        <div class="footer-note">
-            ⚡ Decode parameter 'r' atau 'd' dari URL shortener Roblox
+        <div class="footer">
+            ⚡ Backend tersembunyi • Powered by Vercel
         </div>
     </div>
 
     <script>
         (function() {
-            'use strict';
-            
-            const urlInput = document.getElementById('urlInput');
-            const decodeBtn = document.getElementById('decodeBtn');
+            const input = document.getElementById('urlInput');
+            const bypassBtn = document.getElementById('bypassBtn');
             const pasteBtn = document.getElementById('pasteBtn');
             const clearBtn = document.getElementById('clearBtn');
-            const resultPanel = document.getElementById('resultPanel');
-            const keyDisplay = document.getElementById('keyDisplay');
-            const destinationLink = document.getElementById('destinationLink');
-            const copyKeyBtn = document.getElementById('copyKeyBtn');
+            const demoBtn = document.getElementById('demoBtn');
+            const resultContainer = document.getElementById('resultContainer');
+            const resultLink = document.getElementById('resultLink');
+            const copyResultBtn = document.getElementById('copyResultBtn');
             const goBtn = document.getElementById('goBtn');
             const errorMsg = document.getElementById('errorMsg');
-            const infoTip = document.getElementById('infoTip');
             
-            let currentDecoded = '';
+            let currentResult = '';
             
-            // Fungsi validasi Base64 standar
-            function isBase64(str) {
-                try {
-                    if (typeof str !== 'string' || str.length === 0) return false;
-                    const base64Pattern = /^[A-Za-z0-9+/=]+$/;
-                    if (!base64Pattern.test(str)) return false;
-                    const decodedStr = atob(str);
-                    return btoa(decodedStr) === str;
-                } catch (e) {
-                    return false;
-                }
-            }
-            
-            // Fungsi decode base64url (ganti - jadi +, _ jadi /, tambah padding)
-            function decodeBase64Url(str) {
-                try {
-                    // Ganti karakter base64url ke base64 standar
-                    let base64 = str.replace(/-/g, '+').replace(/_/g, '/');
-                    // Tambah padding jika perlu
-                    while (base64.length % 4) {
-                        base64 += '=';
-                    }
-                    return atob(base64);
-                } catch (e) {
-                    return null;
-                }
-            }
-            
-            // Ambil parameter dari URL (r atau d)
-            function getParam(url, paramName) {
-                try {
-                    const urlObj = new URL(url);
-                    return urlObj.searchParams.get(paramName);
-                } catch (e) {
-                    const match = url.match(new RegExp(`[?&]${paramName}=([^&]+)`));
-                    return match ? match[1] : null;
-                }
-            }
-            
-            // Proses decode
-            function processDecode() {
-                const url = urlInput.value.trim();
+            async function performBypass() {
+                const url = input.value.trim();
                 if (!url) {
-                    showError('Masukkan URL terlebih dahulu');
+                    alert('Masukkan URL dulu!');
                     return;
                 }
                 
-                // Deteksi parameter
-                let encoded = null;
-                let paramType = '';
+                bypassBtn.disabled = true;
+                bypassBtn.innerHTML = '<span class="loading-spinner"></span>Bypassing...';
+                resultContainer.style.display = 'none';
                 
-                // Cek parameter r (loot-link)
-                encoded = getParam(url, 'r');
-                if (encoded) {
-                    paramType = 'r';
-                } else {
-                    // Cek parameter d (platoboost/platorelay)
-                    encoded = getParam(url, 'd');
-                    if (encoded) paramType = 'd';
-                }
-                
-                if (!encoded) {
-                    showError('Parameter "r" atau "d" tidak ditemukan dalam URL');
-                    return;
-                }
-                
-                let decoded = null;
-                let decodeMethod = '';
-                
-                // Coba decode sebagai base64 standar dulu
-                if (isBase64(encoded)) {
-                    decoded = atob(encoded);
-                    decodeMethod = 'base64';
-                } else {
-                    // Coba base64url
-                    decoded = decodeBase64Url(encoded);
-                    if (decoded) {
-                        decodeMethod = 'base64url';
-                    }
-                }
-                
-                if (!decoded) {
-                    showError('Gagal decode: bukan Base64 atau Base64URL yang valid');
-                    return;
-                }
-                
-                currentDecoded = decoded;
-                
-                // Tampilkan hasil
-                keyDisplay.textContent = decoded;
-                
-                // Cek apakah decoded adalah URL
-                if (decoded.startsWith('http://') || decoded.startsWith('https://')) {
-                    destinationLink.href = decoded;
-                    destinationLink.textContent = decoded;
-                    destinationLink.style.display = 'block';
-                    goBtn.style.display = 'block';
-                    infoTip.style.display = 'none';
-                } else {
-                    destinationLink.style.display = 'none';
-                    goBtn.style.display = 'none';
-                    infoTip.style.display = 'block';
-                    // Jika hasil decode bukan URL, mungkin masih perlu decrypt lanjutan
-                    if (paramType === 'd') {
-                        infoTip.innerHTML = '💡 Hasil decode dari parameter \'d\' mungkin masih terenkripsi (AES/RSA). Diperlukan kunci tambahan dari game.';
+                try {
+                    const response = await fetch('/api/bypass', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ url })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        currentResult = data.result;
+                        resultLink.href = data.result;
+                        resultLink.textContent = data.result;
+                        errorMsg.textContent = '';
+                        resultContainer.style.display = 'block';
                     } else {
-                        infoTip.innerHTML = '💡 Hasil decode bukan URL. Mungkin ini adalah key mentah.';
+                        currentResult = '';
+                        resultLink.href = '#';
+                        resultLink.textContent = '-';
+                        errorMsg.textContent = '❌ ' + (data.error || 'Bypass gagal');
+                        resultContainer.style.display = 'block';
                     }
+                } catch (err) {
+                    currentResult = '';
+                    resultLink.href = '#';
+                    resultLink.textContent = '-';
+                    errorMsg.textContent = '❌ Jaringan error / Server down';
+                    resultContainer.style.display = 'block';
+                } finally {
+                    bypassBtn.disabled = false;
+                    bypassBtn.innerHTML = '🚀 Bypass';
                 }
-                
-                errorMsg.textContent = '';
-                resultPanel.style.display = 'block';
             }
             
-            function showError(msg) {
-                currentDecoded = '';
-                keyDisplay.textContent = '-';
-                destinationLink.textContent = '-';
-                destinationLink.href = '#';
-                errorMsg.textContent = '❌ ' + msg;
-                resultPanel.style.display = 'block';
-                goBtn.style.display = 'none';
-                destinationLink.style.display = 'none';
-                infoTip.style.display = 'block';
-                infoTip.innerHTML = '💡 Link dengan parameter \'d\' menggunakan base64url. Hasil decode mungkin masih terenkripsi dan memerlukan langkah lanjutan.';
-            }
-            
-            // Event Listeners
-            decodeBtn.addEventListener('click', processDecode);
-            urlInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') processDecode(); });
+            bypassBtn.addEventListener('click', performBypass);
+            input.addEventListener('keypress', (e) => { if(e.key === 'Enter') performBypass(); });
             
             pasteBtn.addEventListener('click', async () => {
                 try {
                     const text = await navigator.clipboard.readText();
-                    urlInput.value = text;
-                } catch (err) {
-                    alert('Gagal mengakses clipboard, paste manual ya.');
-                }
+                    input.value = text;
+                } catch(e) { alert('Gagal akses clipboard'); }
             });
             
             clearBtn.addEventListener('click', () => {
-                urlInput.value = '';
-                resultPanel.style.display = 'none';
-                currentDecoded = '';
+                input.value = '';
+                resultContainer.style.display = 'none';
+                currentResult = '';
             });
             
-            copyKeyBtn.addEventListener('click', async () => {
-                if (!currentDecoded) return;
+            demoBtn.addEventListener('click', () => {
+                input.value = 'https://linkvertise.com/1229176/kiciahook-kiciahook';
+                performBypass();
+            });
+            
+            copyResultBtn.addEventListener('click', async () => {
+                if (!currentResult) return;
                 try {
-                    await navigator.clipboard.writeText(currentDecoded);
-                    copyKeyBtn.textContent = 'Copied!';
-                    copyKeyBtn.style.background = '#00aa88';
-                    setTimeout(() => {
-                        copyKeyBtn.textContent = 'Copy';
-                        copyKeyBtn.style.background = '#1e3347';
-                    }, 1500);
-                } catch (err) {
+                    await navigator.clipboard.writeText(currentResult);
+                    copyResultBtn.textContent = 'Copied!';
+                    setTimeout(() => copyResultBtn.textContent = 'Copy', 1500);
+                } catch(e) {
                     const ta = document.createElement('textarea');
-                    ta.value = currentDecoded;
+                    ta.value = currentResult;
                     document.body.appendChild(ta);
                     ta.select();
                     document.execCommand('copy');
                     document.body.removeChild(ta);
-                    copyKeyBtn.textContent = 'Copied!';
-                    setTimeout(() => copyKeyBtn.textContent = 'Copy', 1000);
+                    copyResultBtn.textContent = 'Copied!';
+                    setTimeout(() => copyResultBtn.textContent = 'Copy', 1000);
                 }
             });
             
             goBtn.addEventListener('click', () => {
-                if (currentDecoded && (currentDecoded.startsWith('http://') || currentDecoded.startsWith('https://'))) {
-                    window.open(currentDecoded, '_blank');
+                if (currentResult && (currentResult.startsWith('http://') || currentResult.startsWith('https://'))) {
+                    window.open(currentResult, '_blank');
                 } else {
-                    alert('Hasil decode bukan URL yang valid.');
+                    alert('Link tidak valid');
                 }
             });
             
-            // Set placeholder contoh
-            urlInput.value = 'https://auth.platorelay.com/a?d=1cNoNe53Whoc05LhoRzL6Jlvk9wisVHfwo0xK7KmgeIcGRX41I5DNywY43Dsaklxp4epdbr1mAy51lRAM9AmjOvl0musEQbGRo6FDNQRX7ozd8hWiSGREAdkLirersnpKJghyk3RgrmNls4ilZnZwxc6SBJkvXyD1d7JbkoKhF3r7p0eNwcgbEHI7B2GQjKrLscAQgur7y44EAPu2WYLYYHKM2hSXhNukX4RXJKWzJjmPDupHwaL60GYqIjqsUgKNTAt5CD0q7DawRYdqdo26TtjelTgGvWpkocHTIiwD8UwkdeJHxxXWLnGOYkGvV5vjDAhRffkn8Thndard2EpgfWMLax6UsQA9ll6Q1z4ZaT9WyX5lYUjNIM9OpJgehFUEJd4KmFPiXZsEndu6XV8gY32rSn6NgcQvv67QiAgYskydON9QZvuC5Ia33h2nC1';
-            
+            // Placeholder contoh
+            input.value = 'https://loot-link.com/s?a71a5892';
         })();
     </script>
 </body>
