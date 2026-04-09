@@ -3,13 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔓 Delta Key Bypasser Web | Bos Script</title>
+    <title>🔓 Delta Key Bypasser Web v2 | Bos Script</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* Sama seperti sebelumnya, tidak diubah */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: linear-gradient(135deg, #0e0e16, #1c1c2a);
@@ -26,154 +23,42 @@
             border: 1px solid rgba(0, 255, 200, 0.2);
             border-radius: 36px;
             padding: 40px 35px;
-            max-width: 580px;
+            max-width: 620px;
             width: 100%;
             box-shadow: 0 30px 50px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,255,200,0.1) inset;
             text-align: center;
         }
-        h1 {
-            color: white;
-            font-weight: 700;
-            font-size: 2.4rem;
-            margin-bottom: 5px;
-        }
-        h1 span {
-            background: linear-gradient(135deg, #00ffcc, #3a86ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .badge {
-            display: inline-block;
-            background: rgba(0,255,200,0.1);
-            color: #a0d0ff;
-            padding: 6px 16px;
-            border-radius: 40px;
-            font-size: 0.8rem;
-            margin-bottom: 25px;
-            border: 1px solid rgba(0,255,200,0.2);
-        }
-        .input-group {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-        input {
-            flex: 1;
-            padding: 16px 18px;
-            border: none;
-            border-radius: 50px;
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: white;
-            font-size: 0.95rem;
-            outline: none;
-        }
-        input:focus {
-            border-color: #00ffcc;
-            box-shadow: 0 0 15px rgba(0, 255, 200, 0.2);
-        }
-        input::placeholder {
-            color: #8a9ab0;
-        }
-        button {
-            padding: 16px 22px;
-            border: none;
-            border-radius: 50px;
-            background: linear-gradient(145deg, #00ccaa, #2a6fdb);
-            color: white;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: 0.15s;
-            box-shadow: 0 5px 15px rgba(0, 200, 200, 0.2);
-            border: 1px solid rgba(255,255,255,0.1);
-            white-space: nowrap;
-        }
-        button:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 10px 20px rgba(0, 255, 200, 0.3);
-        }
-        .secondary-btn {
-            background: #2a3a50;
-            box-shadow: none;
-        }
-        .secondary-btn:hover {
-            background: #3a4a65;
-        }
-        .action-bar {
-            display: flex;
-            gap: 10px;
-            margin: 15px 0 20px;
-        }
-        .result-panel {
-            background: rgba(0,0,0,0.3);
-            border-radius: 24px;
-            padding: 22px;
-            border-left: 6px solid #00ffcc;
-            text-align: left;
-        }
-        .label {
-            color: #aac0d0;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-        }
-        .key-box {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: #0f1620;
-            padding: 12px 18px;
-            border-radius: 18px;
-            border: 1px solid #2a4050;
-            margin-bottom: 15px;
-        }
-        #keyDisplay {
-            flex: 1;
-            color: #00ffcc;
-            font-family: 'SF Mono', 'Menlo', monospace;
-            font-size: 1.1rem;
-            font-weight: 500;
-            word-break: break-all;
-        }
-        .copy-small {
-            background: #1e3347;
-            padding: 8px 16px;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            box-shadow: none;
-        }
-        .destination-link {
-            color: #7ab0ff;
-            text-decoration: none;
-            word-break: break-all;
-            font-size: 0.9rem;
-            display: block;
-            margin: 10px 0 15px;
-        }
-        .destination-link:hover {
-            text-decoration: underline;
-        }
-        .error-text {
-            color: #ff8090;
-            margin-top: 5px;
-        }
-        .footer-note {
-            margin-top: 20px;
-            color: #6a7a8a;
-            font-size: 0.75rem;
-        }
+        h1 { color: white; font-weight: 700; font-size: 2.4rem; margin-bottom: 5px; }
+        h1 span { background: linear-gradient(135deg, #00ffcc, #3a86ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .badge { display: inline-block; background: rgba(0,255,200,0.1); color: #a0d0ff; padding: 6px 16px; border-radius: 40px; font-size: 0.8rem; margin-bottom: 25px; border: 1px solid rgba(0,255,200,0.2); }
+        .input-group { display: flex; gap: 10px; margin-bottom: 15px; }
+        input { flex: 1; padding: 16px 18px; border: none; border-radius: 50px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255,255,255,0.1); color: white; font-size: 0.95rem; outline: none; }
+        input:focus { border-color: #00ffcc; box-shadow: 0 0 15px rgba(0, 255, 200, 0.2); }
+        input::placeholder { color: #8a9ab0; }
+        button { padding: 16px 22px; border: none; border-radius: 50px; background: linear-gradient(145deg, #00ccaa, #2a6fdb); color: white; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: 0.15s; box-shadow: 0 5px 15px rgba(0, 200, 200, 0.2); border: 1px solid rgba(255,255,255,0.1); white-space: nowrap; }
+        button:hover { transform: translateY(-1px); box-shadow: 0 10px 20px rgba(0, 255, 200, 0.3); }
+        .secondary-btn { background: #2a3a50; box-shadow: none; }
+        .secondary-btn:hover { background: #3a4a65; }
+        .action-bar { display: flex; gap: 10px; margin: 15px 0 20px; }
+        .result-panel { background: rgba(0,0,0,0.3); border-radius: 24px; padding: 22px; border-left: 6px solid #00ffcc; text-align: left; }
+        .label { color: #aac0d0; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+        .key-box { display: flex; align-items: center; gap: 12px; background: #0f1620; padding: 12px 18px; border-radius: 18px; border: 1px solid #2a4050; margin-bottom: 15px; }
+        #keyDisplay { flex: 1; color: #00ffcc; font-family: 'SF Mono', 'Menlo', monospace; font-size: 1.1rem; font-weight: 500; word-break: break-all; }
+        .copy-small { background: #1e3347; padding: 8px 16px; border-radius: 30px; font-size: 0.8rem; box-shadow: none; }
+        .destination-link { color: #7ab0ff; text-decoration: none; word-break: break-all; font-size: 0.9rem; display: block; margin: 10px 0 15px; }
+        .destination-link:hover { text-decoration: underline; }
+        .error-text { color: #ff8090; margin-top: 5px; }
+        .footer-note { margin-top: 20px; color: #6a7a8a; font-size: 0.75rem; }
+        .info-tip { background: rgba(255,200,0,0.1); border-radius: 12px; padding: 10px; margin-top: 15px; color: #ffd966; font-size: 0.8rem; border: 1px solid #ffd96633; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🔐 <span>Delta</span> Bypasser</h1>
-        <div class="badge">loot-link.com • gateway.platoboost.com</div>
+        <h1>🔐 <span>Delta</span> Bypasser v2</h1>
+        <div class="badge">loot-link.com • platoboost.com • platorelay.com</div>
         
         <div class="input-group">
-            <input type="text" id="urlInput" placeholder="https://loot-link.com/s?r=..." autocomplete="off" />
+            <input type="text" id="urlInput" placeholder="https://auth.platorelay.com/a?d=..." autocomplete="off" />
             <button id="decodeBtn">Decode</button>
         </div>
         
@@ -183,21 +68,24 @@
         </div>
         
         <div id="resultPanel" class="result-panel" style="display: none;">
-            <div class="label">🔑 Decoded Key / Destination</div>
+            <div class="label">🔑 Decoded Result</div>
             <div class="key-box">
                 <span id="keyDisplay">-</span>
                 <button id="copyKeyBtn" class="copy-small">Copy</button>
             </div>
             <div>
-                <span class="label" style="display: block; margin-top: 5px;">🔗 Original Destination</span>
+                <span class="label" style="display: block; margin-top: 5px;">🔗 Destination URL (if decoded)</span>
                 <a href="#" id="destinationLink" class="destination-link" target="_blank">-</a>
             </div>
             <button id="goBtn" style="width: 100%; margin-top: 12px;">🚀 Go to Destination</button>
             <div id="errorMsg" class="error-text"></div>
+            <div class="info-tip" id="infoTip">
+                💡 Link dengan parameter 'd' menggunakan base64url. Hasil decode mungkin masih terenkripsi dan memerlukan langkah lanjutan.
+            </div>
         </div>
         
         <div class="footer-note">
-            ⚡ Decode parameter 'r' dari URL dan langsung buka link asli (seperti userscript)
+            ⚡ Decode parameter 'r' atau 'd' dari URL shortener Roblox
         </div>
     </div>
 
@@ -215,11 +103,11 @@
             const copyKeyBtn = document.getElementById('copyKeyBtn');
             const goBtn = document.getElementById('goBtn');
             const errorMsg = document.getElementById('errorMsg');
+            const infoTip = document.getElementById('infoTip');
             
             let currentDecoded = '';
-            let currentUrl = '';
             
-            // Fungsi validasi Base64 (sama dengan userscript)
+            // Fungsi validasi Base64 standar
             function isBase64(str) {
                 try {
                     if (typeof str !== 'string' || str.length === 0) return false;
@@ -232,13 +120,28 @@
                 }
             }
             
-            // Ambil parameter 'r' dari URL
-            function getRParam(url) {
+            // Fungsi decode base64url (ganti - jadi +, _ jadi /, tambah padding)
+            function decodeBase64Url(str) {
+                try {
+                    // Ganti karakter base64url ke base64 standar
+                    let base64 = str.replace(/-/g, '+').replace(/_/g, '/');
+                    // Tambah padding jika perlu
+                    while (base64.length % 4) {
+                        base64 += '=';
+                    }
+                    return atob(base64);
+                } catch (e) {
+                    return null;
+                }
+            }
+            
+            // Ambil parameter dari URL (r atau d)
+            function getParam(url, paramName) {
                 try {
                     const urlObj = new URL(url);
-                    return urlObj.searchParams.get('r');
+                    return urlObj.searchParams.get(paramName);
                 } catch (e) {
-                    const match = url.match(/[?&]r=([^&]+)/);
+                    const match = url.match(new RegExp(`[?&]${paramName}=([^&]+)`));
                     return match ? match[1] : null;
                 }
             }
@@ -251,41 +154,71 @@
                     return;
                 }
                 
-                const rParam = getRParam(url);
-                if (!rParam) {
-                    showError('Parameter "r" tidak ditemukan dalam URL');
+                // Deteksi parameter
+                let encoded = null;
+                let paramType = '';
+                
+                // Cek parameter r (loot-link)
+                encoded = getParam(url, 'r');
+                if (encoded) {
+                    paramType = 'r';
+                } else {
+                    // Cek parameter d (platoboost/platorelay)
+                    encoded = getParam(url, 'd');
+                    if (encoded) paramType = 'd';
+                }
+                
+                if (!encoded) {
+                    showError('Parameter "r" atau "d" tidak ditemukan dalam URL');
                     return;
                 }
                 
-                if (!isBase64(rParam)) {
-                    showError('Parameter "r" bukan Base64 yang valid');
+                let decoded = null;
+                let decodeMethod = '';
+                
+                // Coba decode sebagai base64 standar dulu
+                if (isBase64(encoded)) {
+                    decoded = atob(encoded);
+                    decodeMethod = 'base64';
+                } else {
+                    // Coba base64url
+                    decoded = decodeBase64Url(encoded);
+                    if (decoded) {
+                        decodeMethod = 'base64url';
+                    }
+                }
+                
+                if (!decoded) {
+                    showError('Gagal decode: bukan Base64 atau Base64URL yang valid');
                     return;
                 }
                 
-                try {
-                    const decoded = atob(rParam);
-                    currentDecoded = decoded;
-                    currentUrl = url;
-                    
-                    // Tampilkan hasil
-                    keyDisplay.textContent = decoded;
+                currentDecoded = decoded;
+                
+                // Tampilkan hasil
+                keyDisplay.textContent = decoded;
+                
+                // Cek apakah decoded adalah URL
+                if (decoded.startsWith('http://') || decoded.startsWith('https://')) {
                     destinationLink.href = decoded;
                     destinationLink.textContent = decoded;
-                    errorMsg.textContent = '';
-                    resultPanel.style.display = 'block';
-                    
-                    // Jika decoded adalah URL valid, bisa langsung
-                    if (decoded.startsWith('http://') || decoded.startsWith('https://')) {
-                        destinationLink.style.display = 'block';
-                        goBtn.style.display = 'block';
+                    destinationLink.style.display = 'block';
+                    goBtn.style.display = 'block';
+                    infoTip.style.display = 'none';
+                } else {
+                    destinationLink.style.display = 'none';
+                    goBtn.style.display = 'none';
+                    infoTip.style.display = 'block';
+                    // Jika hasil decode bukan URL, mungkin masih perlu decrypt lanjutan
+                    if (paramType === 'd') {
+                        infoTip.innerHTML = '💡 Hasil decode dari parameter \'d\' mungkin masih terenkripsi (AES/RSA). Diperlukan kunci tambahan dari game.';
                     } else {
-                        destinationLink.style.display = 'none';
-                        goBtn.style.display = 'none';
-                        // Tapi tetap tampilkan key
+                        infoTip.innerHTML = '💡 Hasil decode bukan URL. Mungkin ini adalah key mentah.';
                     }
-                } catch (e) {
-                    showError('Gagal decode Base64: ' + e.message);
                 }
+                
+                errorMsg.textContent = '';
+                resultPanel.style.display = 'block';
             }
             
             function showError(msg) {
@@ -296,14 +229,14 @@
                 errorMsg.textContent = '❌ ' + msg;
                 resultPanel.style.display = 'block';
                 goBtn.style.display = 'none';
+                destinationLink.style.display = 'none';
+                infoTip.style.display = 'block';
+                infoTip.innerHTML = '💡 Link dengan parameter \'d\' menggunakan base64url. Hasil decode mungkin masih terenkripsi dan memerlukan langkah lanjutan.';
             }
             
             // Event Listeners
             decodeBtn.addEventListener('click', processDecode);
-            
-            urlInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') processDecode();
-            });
+            urlInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') processDecode(); });
             
             pasteBtn.addEventListener('click', async () => {
                 try {
@@ -331,7 +264,6 @@
                         copyKeyBtn.style.background = '#1e3347';
                     }, 1500);
                 } catch (err) {
-                    // Fallback
                     const ta = document.createElement('textarea');
                     ta.value = currentDecoded;
                     document.body.appendChild(ta);
@@ -351,8 +283,8 @@
                 }
             });
             
-            // Contoh placeholder
-            urlInput.value = 'https://loot-link.com/s?r=aHR0cHM6Ly9leGFtcGxlLmNvbS9rZXk=';
+            // Set placeholder contoh
+            urlInput.value = 'https://auth.platorelay.com/a?d=1cNoNe53Whoc05LhoRzL6Jlvk9wisVHfwo0xK7KmgeIcGRX41I5DNywY43Dsaklxp4epdbr1mAy51lRAM9AmjOvl0musEQbGRo6FDNQRX7ozd8hWiSGREAdkLirersnpKJghyk3RgrmNls4ilZnZwxc6SBJkvXyD1d7JbkoKhF3r7p0eNwcgbEHI7B2GQjKrLscAQgur7y44EAPu2WYLYYHKM2hSXhNukX4RXJKWzJjmPDupHwaL60GYqIjqsUgKNTAt5CD0q7DawRYdqdo26TtjelTgGvWpkocHTIiwD8UwkdeJHxxXWLnGOYkGvV5vjDAhRffkn8Thndard2EpgfWMLax6UsQA9ll6Q1z4ZaT9WyX5lYUjNIM9OpJgehFUEJd4KmFPiXZsEndu6XV8gY32rSn6NgcQvv67QiAgYskydON9QZvuC5Ia33h2nC1';
             
         })();
     </script>
