@@ -1,338 +1,99 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🚀 Ultimate Link Bypasser | Bos Script</title>
+    <title>BypassTools Standalone</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(145deg, #0b0e14 0%, #1a1f2c 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        .glass-card {
-            background: rgba(20, 28, 40, 0.75);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 255, 200, 0.18);
-            border-radius: 40px;
-            padding: 40px 35px;
-            max-width: 680px;
-            width: 100%;
-            box-shadow: 0 30px 50px rgba(0,0,0,0.7), 0 0 0 1px rgba(0,255,200,0.1) inset;
-            text-align: center;
-        }
-        h1 {
-            color: white;
-            font-weight: 700;
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-        }
-        .gradient-text {
-            background: linear-gradient(135deg, #00ffcc, #4d9eff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .sub {
-            color: #a5b9d0;
-            margin-bottom: 30px;
-            font-size: 1rem;
-        }
-        .input-group {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-        input {
-            flex: 1;
-            padding: 18px 22px;
-            border: none;
-            border-radius: 60px;
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: white;
-            font-size: 1rem;
-            outline: none;
-            transition: 0.2s;
-        }
-        input:focus {
-            border-color: #00ffcc;
-            box-shadow: 0 0 20px rgba(0,255,200,0.2);
-        }
-        input::placeholder { color: #8090a0; }
-        button {
-            padding: 18px 28px;
-            border: none;
-            border-radius: 60px;
-            background: linear-gradient(145deg, #00c8a0, #2a6fdb);
-            color: white;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.15s;
-            box-shadow: 0 8px 20px rgba(0,200,200,0.25);
-            border: 1px solid rgba(255,255,255,0.15);
-            white-space: nowrap;
-        }
-        button:hover {
-            transform: scale(1.02);
-            box-shadow: 0 12px 28px rgba(0,255,200,0.4);
-        }
-        button:disabled {
-            opacity: 0.6;
-            transform: none;
-            cursor: not-allowed;
-        }
-        .action-row {
-            display: flex;
-            gap: 10px;
-            margin: 15px 0 20px;
-        }
-        .sec-btn {
-            background: #253544;
-            box-shadow: none;
-            font-weight: 500;
-        }
-        .sec-btn:hover { background: #31495e; }
-        .result-area {
-            background: rgba(0,0,0,0.3);
-            border-radius: 28px;
-            padding: 25px;
-            border-left: 6px solid #00ffcc;
-            text-align: left;
-            margin-top: 20px;
-        }
-        .label {
-            color: #b0c7dd;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 10px;
-        }
-        .link-box {
-            background: #0e1622;
-            padding: 16px 20px;
-            border-radius: 20px;
-            border: 1px solid #2e4a60;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 15px;
-        }
-        #resultLink {
-            flex: 1;
-            color: #00ffcc;
-            font-family: 'SF Mono', monospace;
-            font-size: 1.05rem;
-            word-break: break-all;
-            text-decoration: none;
-        }
-        #resultLink:hover { text-decoration: underline; }
-        .copy-icon {
-            background: #1d3448;
-            padding: 10px 18px;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: 0.1s;
-            border: none;
-            color: white;
-        }
-        .copy-icon:hover { background: #2a4a64; }
-        .error-message {
-            color: #ff8a9a;
-            margin-top: 10px;
-        }
-        .loading-spinner {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,0.2);
-            border-top-color: #00ffcc;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin-right: 8px;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        .footer {
-            margin-top: 25px;
-            color: #6f859c;
-            font-size: 0.8rem;
-        }
-        .badge-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            justify-content: center;
-            margin: 20px 0 10px;
-        }
-        .badge {
-            background: rgba(255,255,255,0.03);
-            padding: 6px 16px;
-            border-radius: 30px;
-            font-size: 0.75rem;
-            color: #b0c2d6;
-            border: 1px solid #2a4055;
-        }
+        body { background-color: #09090b; color: #fafafa; font-family: 'Inter', sans-serif; }
+        .gradient-text { background: linear-gradient(135deg, #fff, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     </style>
 </head>
-<body>
-    <div class="glass-card">
-        <h1>🔓 <span class="gradient-text">Bypass</span> All</h1>
-        <div class="sub">Tempel link shortener, langsung tembus</div>
-        
-        <div class="badge-container">
-            <span class="badge">Linkvertise</span>
-            <span class="badge">LootLabs</span>
-            <span class="badge">Rekonise</span>
-            <span class="badge">Pastebin</span>
-            <span class="badge">Platoboost</span>
-            <span class="badge">Sub2Get</span>
-            <span class="badge">+40 lainnya</span>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+    <div class="w-full max-w-md bg-[#18181b] border border-[#27272a] rounded-2xl p-8 shadow-2xl">
+        <h1 class="text-3xl font-bold mb-2 gradient-text text-center">BypassTools</h1>
+        <p class="text-gray-400 text-sm text-center mb-6">Tanpa Tampermonkey - Versi API Fetch</p>
+
+        <div class="space-y-4">
+            <input type="text" id="targetUrl" placeholder="Paste link iklan di sini..." 
+                class="w-full bg-[#09090b] border border-[#3f3f46] rounded-xl p-4 text-white focus:outline-none focus:border-[#8b5cf6] transition-all">
+            
+            <button onclick="startBypass()" id="btnAction"
+                class="w-full bg-gradient-to-r from-[#8b5cf6] to-[#7c3aed] text-white font-bold py-4 rounded-xl shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all">
+                BYPASS SEKARANG →
+            </button>
         </div>
-        
-        <div class="input-group">
-            <input type="text" id="urlInput" placeholder="https://linkvertise.com/xxx" autocomplete="off" />
-            <button id="bypassBtn">🚀 Bypass</button>
-        </div>
-        
-        <div class="action-row">
-            <button id="pasteBtn" class="sec-btn">📋 Paste</button>
-            <button id="clearBtn" class="sec-btn">🗑️ Clear</button>
-            <button id="demoBtn" class="sec-btn">🔗 Demo</button>
-        </div>
-        
-        <div id="resultContainer" style="display: none;" class="result-area">
-            <div class="label">🔗 Link Asli</div>
-            <div class="link-box">
-                <a href="#" target="_blank" id="resultLink">-</a>
-                <button id="copyResultBtn" class="copy-icon">Copy</button>
+
+        <div id="resultBox" class="mt-8 hidden animate-fade-in text-center">
+            <p class="text-xs text-gray-500 uppercase tracking-widest mb-2 font-bold">Hasil Link:</p>
+            <div id="resultLink" class="bg-[#09090b] border border-[#3f3f46] p-4 rounded-lg break-all text-[#a78bfa] font-mono text-sm">
+                Menunggu...
             </div>
-            <button id="goBtn" style="width:100%; margin-top:8px; background:#1e3a4a;">🌐 Buka Link</button>
-            <div id="errorMsg" class="error-message"></div>
+            <button onclick="copyResult()" class="mt-4 text-xs text-gray-400 hover:text-white underline">Salin Link</button>
         </div>
-        
-        <div class="footer">
-            ⚡ Backend tersembunyi • Powered by Vercel
-        </div>
+
+        <div id="status" class="mt-4 text-xs text-center text-gray-600 italic"></div>
     </div>
 
     <script>
-        (function() {
-            const input = document.getElementById('urlInput');
-            const bypassBtn = document.getElementById('bypassBtn');
-            const pasteBtn = document.getElementById('pasteBtn');
-            const clearBtn = document.getElementById('clearBtn');
-            const demoBtn = document.getElementById('demoBtn');
-            const resultContainer = document.getElementById('resultContainer');
-            const resultLink = document.getElementById('resultLink');
-            const copyResultBtn = document.getElementById('copyResultBtn');
-            const goBtn = document.getElementById('goBtn');
-            const errorMsg = document.getElementById('errorMsg');
-            
-            let currentResult = '';
-            
-            async function performBypass() {
-                const url = input.value.trim();
-                if (!url) {
-                    alert('Masukkan URL dulu!');
-                    return;
-                }
+        async function startBypass() {
+            const urlInput = document.getElementById('targetUrl').value;
+            const resBox = document.getElementById('resultBox');
+            const resLink = document.getElementById('resultLink');
+            const btn = document.getElementById('btnAction');
+            const status = document.getElementById('status');
+
+            if (!urlInput) return alert("Masukkan URL dulu!");
+
+            // Reset UI
+            btn.disabled = true;
+            btn.innerText = "SEDANG PROSES...";
+            status.innerText = "Menghubungi server via Proxy...";
+            resBox.classList.add('hidden');
+
+            try {
+                // MENGGUNAKAN LOGIKA API DARI SCRIPT YANG KAMU BERIKAN
+                // Kita pakai CORS Proxy supaya tidak diblokir browser
+                const proxy = "https://corsproxy.io/?";
+                const apiUrl = `https://wik22.bypass.tools/api/bypass?url=${encodeURIComponent(urlInput)}`;
+
+                const response = await fetch(proxy + encodeURIComponent(apiUrl), {
+                    method: 'GET',
+                    headers: { 'X-API-Key': '12345678' } // API Key dari script tadi
+                });
+
+                if (!response.ok) throw new Error("Server tidak merespon");
+
+                const data = await response.json();
                 
-                bypassBtn.disabled = true;
-                bypassBtn.innerHTML = '<span class="loading-spinner"></span>Bypassing...';
-                resultContainer.style.display = 'none';
-                
-                try {
-                    const response = await fetch('/api/bypass', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ url })
-                    });
-                    
-                    const data = await response.json();
-                    
-                    if (data.success) {
-                        currentResult = data.result;
-                        resultLink.href = data.result;
-                        resultLink.textContent = data.result;
-                        errorMsg.textContent = '';
-                        resultContainer.style.display = 'block';
-                    } else {
-                        currentResult = '';
-                        resultLink.href = '#';
-                        resultLink.textContent = '-';
-                        errorMsg.textContent = '❌ ' + (data.error || 'Bypass gagal');
-                        resultContainer.style.display = 'block';
-                    }
-                } catch (err) {
-                    currentResult = '';
-                    resultLink.href = '#';
-                    resultLink.textContent = '-';
-                    errorMsg.textContent = '❌ Jaringan error / Server down';
-                    resultContainer.style.display = 'block';
-                } finally {
-                    bypassBtn.disabled = false;
-                    bypassBtn.innerHTML = '🚀 Bypass';
-                }
-            }
-            
-            bypassBtn.addEventListener('click', performBypass);
-            input.addEventListener('keypress', (e) => { if(e.key === 'Enter') performBypass(); });
-            
-            pasteBtn.addEventListener('click', async () => {
-                try {
-                    const text = await navigator.clipboard.readText();
-                    input.value = text;
-                } catch(e) { alert('Gagal akses clipboard'); }
-            });
-            
-            clearBtn.addEventListener('click', () => {
-                input.value = '';
-                resultContainer.style.display = 'none';
-                currentResult = '';
-            });
-            
-            demoBtn.addEventListener('click', () => {
-                input.value = 'https://linkvertise.com/1229176/kiciahook-kiciahook';
-                performBypass();
-            });
-            
-            copyResultBtn.addEventListener('click', async () => {
-                if (!currentResult) return;
-                try {
-                    await navigator.clipboard.writeText(currentResult);
-                    copyResultBtn.textContent = 'Copied!';
-                    setTimeout(() => copyResultBtn.textContent = 'Copy', 1500);
-                } catch(e) {
-                    const ta = document.createElement('textarea');
-                    ta.value = currentResult;
-                    document.body.appendChild(ta);
-                    ta.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(ta);
-                    copyResultBtn.textContent = 'Copied!';
-                    setTimeout(() => copyResultBtn.textContent = 'Copy', 1000);
-                }
-            });
-            
-            goBtn.addEventListener('click', () => {
-                if (currentResult && (currentResult.startsWith('http://') || currentResult.startsWith('https://'))) {
-                    window.open(currentResult, '_blank');
+                // Ambil link hasil (pyl atau destination)
+                const finalUrl = data.result || data.destination || data.url;
+
+                if (finalUrl) {
+                    resLink.innerText = finalUrl;
+                    resBox.classList.remove('hidden');
+                    status.innerText = "Bypass Berhasil!";
                 } else {
-                    alert('Link tidak valid');
+                    status.innerText = "Gagal: Link tidak ditemukan di respon server.";
                 }
-            });
-            
-            // Placeholder contoh
-            input.value = 'https://loot-link.com/s?a71a5892';
-        })();
+
+            } catch (err) {
+                console.error(err);
+                status.innerText = "Error: " + err.message;
+                alert("Gagal bypass. Pastikan link benar atau coba lagi nanti.");
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "BYPASS SEKARANG →";
+            }
+        }
+
+        function copyResult() {
+            const text = document.getElementById('resultLink').innerText;
+            navigator.clipboard.writeText(text);
+            alert("Tersalin!");
+        }
     </script>
 </body>
 </html>
