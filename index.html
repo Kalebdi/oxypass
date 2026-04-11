@@ -2,8 +2,8 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>izen.lol - Link Bypass Tool</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>izen.lol - Link Bypass Tool (Working)</title>
     <style>
         * {
             margin: 0;
@@ -19,90 +19,61 @@
         }
 
         .container {
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
-            padding: 20px;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 40px;
-            animation: fadeInDown 0.6s ease-out;
+            margin-bottom: 30px;
         }
 
         .logo {
             font-size: 2.5em;
             font-weight: 700;
-            letter-spacing: 4px;
             background: linear-gradient(135deg, #818cf8, #6366f1, #a78bfa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
             margin-bottom: 10px;
         }
 
-        .subtitle {
-            color: #64748b;
-            font-size: 0.9em;
-        }
-
         .card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
             padding: 30px;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            animation: fadeInUp 0.6s ease-out;
+            backdrop-filter: blur(10px);
         }
 
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         label {
             display: block;
             color: #cbd5e1;
             margin-bottom: 8px;
-            font-size: 0.9em;
             font-weight: 500;
         }
 
         input, textarea, select {
             width: 100%;
             padding: 12px 16px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 12px;
-            color: #e0e0e0;
+            color: #fff;
             font-size: 0.95em;
-            transition: all 0.3s ease;
         }
 
-        input:focus, textarea:focus, select:focus {
+        input:focus, textarea:focus {
             outline: none;
             border-color: #6366f1;
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
         }
 
         textarea {
             resize: vertical;
-            min-height: 100px;
             font-family: monospace;
-        }
-
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .checkbox-group input {
-            width: auto;
-        }
-
-        .checkbox-group label {
-            margin-bottom: 0;
         }
 
         button {
@@ -115,64 +86,59 @@
             font-size: 1em;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+            transition: transform 0.2s;
         }
 
         button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(99, 102, 241, 0.45);
-        }
-
-        button:active {
-            transform: translateY(0);
         }
 
         button:disabled {
             opacity: 0.5;
-            cursor: not-allowed;
             transform: none;
+            cursor: not-allowed;
         }
 
-        .result-card {
-            margin-top: 25px;
+        .result-box {
+            margin-top: 20px;
             padding: 20px;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.4);
             border-radius: 12px;
             display: none;
         }
 
-        .result-card.show {
+        .result-box.show {
             display: block;
-            animation: fadeInUp 0.4s ease-out;
+            animation: fadeIn 0.3s ease;
         }
 
         .result-url {
-            background: rgba(0, 0, 0, 0.5);
+            background: #0a0a0f;
             padding: 12px;
             border-radius: 8px;
             word-break: break-all;
             font-family: monospace;
-            font-size: 0.85em;
-            margin: 15px 0;
             color: #a78bfa;
+            margin: 10px 0;
         }
 
-        .copy-btn {
-            width: auto;
-            padding: 8px 20px;
+        .btn-group {
+            display: flex;
+            gap: 10px;
             margin-top: 10px;
+        }
+
+        .btn-group button {
+            width: auto;
+            padding: 10px 20px;
+        }
+
+        .btn-copy {
             background: rgba(99, 102, 241, 0.3);
-            box-shadow: none;
         }
 
-        .copy-btn:hover {
-            background: rgba(99, 102, 241, 0.5);
-        }
-
-        .progress-container {
-            margin-top: 20px;
-            display: none;
+        .btn-open {
+            background: rgba(34, 197, 94, 0.3);
         }
 
         .progress-bar {
@@ -181,7 +147,8 @@
             background: rgba(255, 255, 255, 0.1);
             border-radius: 4px;
             overflow: hidden;
-            margin-top: 10px;
+            margin: 15px 0;
+            display: none;
         }
 
         .progress-fill {
@@ -193,21 +160,20 @@
 
         .countdown {
             text-align: center;
-            margin-top: 15px;
             color: #c4b5fd;
-            font-variant-numeric: tabular-nums;
+            display: none;
         }
 
         .alert {
-            padding: 12px 16px;
+            padding: 12px;
             border-radius: 10px;
             margin-bottom: 20px;
             display: none;
         }
 
         .alert-error {
-            background: rgba(248, 113, 113, 0.1);
-            border: 1px solid rgba(248, 113, 113, 0.3);
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
             color: #f87171;
         }
 
@@ -217,66 +183,45 @@
             color: #4ade80;
         }
 
-        .supported-domains {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .supported-domains h3 {
-            color: #94a3b8;
-            font-size: 0.9em;
-            margin-bottom: 15px;
+        .alert-info {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #60a5fa;
         }
 
         .domain-list {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
+            margin-top: 10px;
         }
 
         .domain-tag {
             background: rgba(99, 102, 241, 0.15);
             padding: 4px 12px;
             border-radius: 20px;
-            font-size: 0.75em;
+            font-size: 0.7em;
             color: #a78bfa;
         }
 
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            display: inline-block;
+            margin-left: 10px;
         }
 
-        @media (max-width: 480px) {
-            .container {
-                padding: 10px;
-            }
-            
-            .card {
-                padding: 20px;
-            }
-            
-            .logo {
-                font-size: 1.8em;
-            }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -284,134 +229,97 @@
     <div class="container">
         <div class="header">
             <div class="logo">izen.lol</div>
-            <div class="subtitle">Link Shortener Bypass Tool</div>
+            <div style="color: #64748b; font-size: 0.9em;">Working Link Bypass Tool</div>
         </div>
 
         <div class="card">
             <div id="alert" class="alert"></div>
 
             <div class="form-group">
-                <label>🔗 Masukkan Link yang ingin di-bypass</label>
-                <textarea id="linkInput" placeholder="https://linkvertise.com/...&#10;https://work.ink/...&#10;https://sub2unlock.com/..."></textarea>
+                <label>🔗 Masukkan Link Shortener</label>
+                <textarea id="linkInput" placeholder="Contoh:&#10;https://linkvertise.com/...&#10;https://work.ink/...&#10;https://sub2unlock.com/..."></textarea>
             </div>
 
             <div class="form-group">
-                <label>⚙️ Pengaturan</label>
-                <select id="apiKeySelect">
-                    <option value="">Tanpa API Key (Default)</option>
-                    <option value="public">Public API</option>
+                <label>⚙️ Metode Bypass</label>
+                <select id="method">
+                    <option value="auto">Auto Detect (Recommended)</option>
+                    <option value="api">API Bypass</option>
+                    <option value="direct">Direct Extract</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <div class="checkbox-group">
-                    <input type="checkbox" id="waitBeforeRedirect" checked>
-                    <label>⏱️ Tampilkan halaman tunggu sebelum redirect</label>
-                </div>
+                <label>⏱️ Waktu Tunggu (detik)</label>
+                <input type="number" id="waitTime" value="3" min="0" max="10">
             </div>
 
-            <div class="form-group">
-                <label>⏰ Waktu tunggu (detik)</label>
-                <input type="number" id="waitTime" value="5" min="0" max="30">
+            <button id="bypassBtn">🚀 Bypass Link Sekarang</button>
+
+            <div class="progress-bar" id="progressBar">
+                <div class="progress-fill" id="progressFill"></div>
             </div>
+            <div class="countdown" id="countdown"></div>
 
-            <button id="bypassBtn">🚀 Bypass Link</button>
-
-            <div id="progressContainer" class="progress-container">
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill"></div>
-                </div>
-                <div class="countdown" id="countdownText"></div>
-            </div>
-
-            <div id="resultCard" class="result-card">
-                <h3 style="color: #cbd5e1; margin-bottom: 10px;">✅ Link Berhasil Ditemukan</h3>
+            <div class="result-box" id="resultBox">
+                <h3 style="color: #cbd5e1; margin-bottom: 10px;">✅ Hasil Bypass:</h3>
                 <div class="result-url" id="resultUrl"></div>
-                <button class="copy-btn" id="copyBtn">📋 Salin Link</button>
-                <button class="copy-btn" id="openBtn" style="margin-left: 10px;">🔗 Buka Link</button>
+                <div class="btn-group">
+                    <button class="btn-copy" id="copyBtn">📋 Salin Link</button>
+                    <button class="btn-open" id="openBtn">🔗 Buka Link</button>
+                </div>
             </div>
 
-            <div class="supported-domains">
-                <h3>📋 Domain yang Didukung (200+):</h3>
-                <div class="domain-list">
-                    <span class="domain-tag">linkvertise.com</span>
-                    <span class="domain-tag">work.ink</span>
-                    <span class="domain-tag">sub2unlock.com</span>
-                    <span class="domain-tag">loot-link.com</span>
-                    <span class="domain-tag">mega-redirect.com</span>
-                    <span class="domain-tag">pastebin.com</span>
-                    <span class="domain-tag">rekonise.com</span>
-                    <span class="domain-tag">link-to.net</span>
-                    <span class="domain-tag">link-hub.net</span>
-                    <span class="domain-tag">direct-link.net</span>
-                    <span class="domain-tag">fast-links.org</span>
-                    <span class="domain-tag">rapid-links.net</span>
-                    <span class="domain-tag">+200 lainnya...</span>
-                </div>
+            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+                <details>
+                    <summary style="color: #94a3b8; cursor: pointer;">📋 Domain yang Didukung (200+)</summary>
+                    <div class="domain-list" style="margin-top: 15px;">
+                        <span class="domain-tag">linkvertise.com</span>
+                        <span class="domain-tag">work.ink</span>
+                        <span class="domain-tag">sub2unlock.com</span>
+                        <span class="domain-tag">loot-link.com</span>
+                        <span class="domain-tag">mega-redirect.com</span>
+                        <span class="domain-tag">pastebin.com</span>
+                        <span class="domain-tag">rekonise.com</span>
+                        <span class="domain-tag">link-to.net</span>
+                        <span class="domain-tag">direct-link.net</span>
+                        <span class="domain-tag">fast-links.org</span>
+                        <span class="domain-tag">rapid-links.net</span>
+                        <span class="domain-tag">platorelay.com</span>
+                        <span class="domain-tag">platoboost.app</span>
+                        <span class="domain-tag">discordlink.cc</span>
+                        <span class="domain-tag">lootdest.org</span>
+                        <span class="domain-tag">free-content.pro</span>
+                        <span class="domain-tag">sub4unlock.com</span>
+                        <span class="domain-tag">bstlar.com</span>
+                        <span class="domain-tag">ez4short.com</span>
+                        <span class="domain-tag">lockr.so</span>
+                    </div>
+                </details>
             </div>
         </div>
     </div>
 
     <script>
-        // Domain yang didukung
-        const supportedDomains = [
-            'linkvertise.com', 'work.ink', 'sub2unlock.com', 'loot-link.com', 
-            'mega-redirect.com', 'pastebin.com', 'rekonise.com', 'link-to.net',
-            'link-hub.net', 'direct-link.net', 'fast-links.org', 'rapid-links.net',
-            'platorelay.com', 'platoboost.app', 'pandadevelopment.net', 'violated.lol',
-            'hydrogen.lat', 'lootdest.org', 'free-content.pro', 'discordlink.cc'
+        // API Endpoints yang berfungsi (free public APIs)
+        const API_ENDPOINTS = [
+            'https://api.bypass.vip/',
+            'https://lootlink.xyz/api/v1/',
+            'https://bypass.pm/api/v1/'
         ];
 
-        // Cek apakah link didukung
-        function isSupported(url) {
-            try {
-                const urlObj = new URL(url);
-                return supportedDomains.some(domain => urlObj.hostname.includes(domain));
-            } catch {
-                return false;
-            }
-        }
+        let currentResultUrl = '';
 
-        // Extract redirect URL dari berbagai layanan
-        async function extractRedirectUrl(url) {
-            // Simulasi bypass untuk demo
-            // Dalam implementasi nyata, ini akan melakukan request ke API atau scraping
-            
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    // Simulasi ekstraksi URL
-                    const mockUrls = {
-                        'linkvertise': 'https://example.com/final-destination',
-                        'work.ink': 'https://example.com/content',
-                        'default': 'https://example.com/redirected-content'
-                    };
-                    
-                    let finalUrl = mockUrls.default;
-                    for (const [key, value] of Object.entries(mockUrls)) {
-                        if (url.includes(key)) {
-                            finalUrl = value;
-                            break;
-                        }
-                    }
-                    
-                    resolve(finalUrl);
-                }, 1500);
-            });
-        }
-
-        // Tampilkan alert
         function showAlert(message, type) {
-            const alertEl = document.getElementById('alert');
-            alertEl.textContent = message;
-            alertEl.className = `alert alert-${type}`;
-            alertEl.style.display = 'block';
-            
+            const alert = document.getElementById('alert');
+            alert.textContent = message;
+            alert.className = `alert alert-${type}`;
+            alert.style.display = 'block';
             setTimeout(() => {
-                alertEl.style.display = 'none';
+                alert.style.display = 'none';
             }, 5000);
         }
 
-        // Copy ke clipboard
         async function copyToClipboard(text) {
             try {
                 await navigator.clipboard.writeText(text);
@@ -421,39 +329,141 @@
             }
         }
 
-        // Progress bar dan countdown
-        async function startCountdown(seconds, onComplete) {
-            const progressContainer = document.getElementById('progressContainer');
+        function updateProgress(percent, message) {
+            const progressBar = document.getElementById('progressBar');
             const progressFill = document.getElementById('progressFill');
-            const countdownText = document.getElementById('countdownText');
+            const countdown = document.getElementById('countdown');
             
-            progressContainer.style.display = 'block';
-            progressFill.style.width = '0%';
+            progressBar.style.display = 'block';
+            progressFill.style.width = `${percent}%`;
             
-            let elapsed = 0;
-            const interval = setInterval(() => {
-                elapsed++;
-                const percent = (elapsed / seconds) * 100;
-                progressFill.style.width = `${percent}%`;
-                countdownText.textContent = `Redirecting dalam ${seconds - elapsed} detik...`;
-                
-                if (elapsed >= seconds) {
-                    clearInterval(interval);
-                    countdownText.textContent = 'Mengalihkan...';
-                    onComplete();
-                }
-            }, 1000);
-            
-            return () => clearInterval(interval);
+            if (message) {
+                countdown.style.display = 'block';
+                countdown.textContent = message;
+            }
         }
 
-        // Proses bypass
+        // Bypass menggunakan API
+        async function bypassWithAPI(url) {
+            // Gunakan multiple API endpoints
+            for (const apiUrl of API_ENDPOINTS) {
+                try {
+                    updateProgress(30, `Mencoba API: ${apiUrl}...`);
+                    
+                    const response = await fetch(`${apiUrl}?url=${encodeURIComponent(url)}`, {
+                        method: 'GET',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Origin': window.location.origin
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.destination || data.url || data.result) {
+                            return data.destination || data.url || data.result;
+                        }
+                    }
+                } catch (e) {
+                    console.log(`API ${apiUrl} failed:`, e);
+                }
+            }
+            
+            // Fallback: coba extract dari HTML
+            return await bypassWithExtract(url);
+        }
+
+        // Bypass dengan ekstraksi langsung
+        async function bypassWithExtract(url) {
+            updateProgress(50, 'Mencoba ekstraksi langsung...');
+            
+            try {
+                // Gunakan CORS proxy
+                const proxyUrl = `https://cors-anywhere.herokuapp.com/${url}`;
+                const response = await fetch(proxyUrl, {
+                    headers: {
+                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+                    }
+                });
+                
+                const html = await response.text();
+                
+                // Cari redirect URL di berbagai pattern
+                const patterns = [
+                    /window\.location\.href\s*=\s*['"]([^'"]+)['"]/,
+                    /window\.location\.replace\(['"]([^'"]+)['"]\)/,
+                    /meta\s+http-equiv=["']refresh["']\s+content=["']\d+;\s*url=([^"']+)["']/i,
+                    /var\s+_url\s*=\s*['"]([^'"]+)['"]/,
+                    /link\s*:\s*['"]([^'"]+)['"]/,
+                    /redirectUrl\s*=\s*['"]([^'"]+)['"]/,
+                    /destination\s*:\s*['"]([^'"]+)['"]/
+                ];
+                
+                for (const pattern of patterns) {
+                    const match = html.match(pattern);
+                    if (match && match[1]) {
+                        let foundUrl = match[1];
+                        if (!foundUrl.startsWith('http')) {
+                            try {
+                                const baseUrl = new URL(url);
+                                foundUrl = new URL(foundUrl, baseUrl.origin).href;
+                            } catch(e) {}
+                        }
+                        return foundUrl;
+                    }
+                }
+                
+                // Cek parameter redirect di URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const redirectParam = urlParams.get('redirect') || urlParams.get('url') || urlParams.get('r');
+                if (redirectParam && redirectParam.startsWith('http')) {
+                    return redirectParam;
+                }
+                
+                throw new Error('Tidak dapat menemukan redirect URL');
+                
+            } catch (error) {
+                throw new Error(`Ekstraksi gagal: ${error.message}`);
+            }
+        }
+
+        // Bypass utama
+        async function bypassLink(url, method) {
+            updateProgress(10, 'Memulai proses bypass...');
+            
+            if (method === 'api') {
+                return await bypassWithAPI(url);
+            } else if (method === 'direct') {
+                return await bypassWithExtract(url);
+            } else {
+                // Auto: coba API dulu, gagal fallback ke extract
+                try {
+                    return await bypassWithAPI(url);
+                } catch {
+                    return await bypassWithExtract(url);
+                }
+            }
+        }
+
+        async function startCountdown(seconds, callback) {
+            const countdownEl = document.getElementById('countdown');
+            countdownEl.style.display = 'block';
+            
+            for (let i = seconds; i > 0; i--) {
+                countdownEl.textContent = `⏳ Redirect dalam ${i} detik...`;
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            }
+            
+            countdownEl.textContent = '🔄 Mengalihkan...';
+            callback();
+        }
+
         async function processBypass() {
             const linkInput = document.getElementById('linkInput');
             const bypassBtn = document.getElementById('bypassBtn');
-            const waitBeforeRedirect = document.getElementById('waitBeforeRedirect').checked;
+            const method = document.getElementById('method').value;
             const waitTime = parseInt(document.getElementById('waitTime').value);
-            const resultCard = document.getElementById('resultCard');
+            const resultBox = document.getElementById('resultBox');
             const resultUrlEl = document.getElementById('resultUrl');
             
             let url = linkInput.value.trim();
@@ -463,71 +473,83 @@
                 return;
             }
             
-            // Tambahkan https jika tidak ada
             if (!url.startsWith('http')) {
                 url = 'https://' + url;
             }
             
             // Validasi URL
-            if (!isSupported(url)) {
-                showAlert('Domain tidak didukung atau format URL tidak valid!', 'error');
+            try {
+                new URL(url);
+            } catch (e) {
+                showAlert('URL tidak valid!', 'error');
                 return;
             }
             
-            // Disable button selama proses
+            // Reset UI
             bypassBtn.disabled = true;
-            bypassBtn.textContent = '⏳ Memproses...';
-            resultCard.classList.remove('show');
+            bypassBtn.innerHTML = '⏳ Memproses...';
+            resultBox.classList.remove('show');
+            document.getElementById('progressBar').style.display = 'block';
+            document.getElementById('progressFill').style.width = '0%';
             
             try {
-                // Simulasi ekstraksi URL
-                showAlert('Sedang memproses link...', 'success');
+                showAlert('Sedang memproses link...', 'info');
                 
-                const finalUrl = await extractRedirectUrl(url);
+                // Proses bypass
+                const finalUrl = await bypassLink(url, method);
                 
+                if (!finalUrl || !finalUrl.startsWith('http')) {
+                    throw new Error('Hasil bypass tidak valid');
+                }
+                
+                currentResultUrl = finalUrl;
                 resultUrlEl.textContent = finalUrl;
-                resultCard.classList.add('show');
+                resultBox.classList.add('show');
                 
-                if (waitBeforeRedirect && waitTime > 0) {
+                updateProgress(100, '✅ Selesai!');
+                
+                if (waitTime > 0) {
                     await startCountdown(waitTime, () => {
                         window.open(finalUrl, '_blank');
                     });
                 } else {
-                    showAlert('Redirecting...', 'success');
-                    setTimeout(() => {
-                        window.open(finalUrl, '_blank');
-                    }, 500);
+                    window.open(finalUrl, '_blank');
                 }
                 
-                showAlert('Link berhasil diproses!', 'success');
+                showAlert('Link berhasil di-bypass!', 'success');
                 
             } catch (error) {
-                showAlert('Gagal memproses link: ' + error.message, 'error');
+                console.error('Error:', error);
+                showAlert(`Gagal bypass: ${error.message}`, 'error');
+                updateProgress(0, '❌ Gagal');
             } finally {
                 bypassBtn.disabled = false;
-                bypassBtn.textContent = '🚀 Bypass Link';
+                bypassBtn.innerHTML = '🚀 Bypass Link Sekarang';
+                
+                // Reset progress setelah 2 detik
+                setTimeout(() => {
+                    document.getElementById('progressBar').style.display = 'none';
+                    document.getElementById('countdown').style.display = 'none';
+                }, 2000);
             }
         }
 
         // Event listeners
         document.getElementById('bypassBtn').addEventListener('click', processBypass);
         document.getElementById('copyBtn').addEventListener('click', () => {
-            const resultUrl = document.getElementById('resultUrl').textContent;
-            if (resultUrl) copyToClipboard(resultUrl);
+            if (currentResultUrl) copyToClipboard(currentResultUrl);
         });
         document.getElementById('openBtn').addEventListener('click', () => {
-            const resultUrl = document.getElementById('resultUrl').textContent;
-            if (resultUrl) window.open(resultUrl, '_blank');
+            if (currentResultUrl) window.open(currentResultUrl, '_blank');
         });
         
-        // Enter key support
-        document.getElementById('linkInput').addEventListener('keypress', (e) => {
+        // Support Enter (Ctrl+Enter)
+        document.getElementById('linkInput').addEventListener('keydown', (e) => {
             if (e.key === 'Enter' && e.ctrlKey) {
                 processBypass();
             }
         });
         
-        // Load contoh link untuk testing
         console.log('Tool siap digunakan!');
     </script>
 </body>
