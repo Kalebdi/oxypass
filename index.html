@@ -2,198 +2,466 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>izen.lol - Full Bypass (Platorelay + All Services)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>izen.lol - Ultimate Link Bypasser | Support 200+ Services</title>
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
     <style>
-        /* CSS sama seperti sebelumnya */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
-            min-height: 100vh;
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            padding: 20px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .container { max-width: 800px; margin: 0 auto; }
-        .header { text-align: center; margin-bottom: 30px; padding: 20px; }
+
+        :root {
+            --bg-primary: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
+            --text-primary: #e0e0e0;
+            --text-secondary: #94a3b8;
+            --accent: #6366f1;
+            --accent-glow: #a78bfa;
+            --success: #4ade80;
+            --error: #f87171;
+            --input-bg: rgba(0, 0, 0, 0.4);
+        }
+
+        body.light-mode {
+            --bg-primary: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 50%, #dce3ec 100%);
+            --bg-card: rgba(255, 255, 255, 0.9);
+            --border: rgba(0, 0, 0, 0.1);
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --input-bg: rgba(255, 255, 255, 0.9);
+        }
+
+        body {
+            background: var(--bg-primary);
+            min-height: 100vh;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
         .logo {
-            font-size: 3em;
-            font-weight: 700;
-            background: linear-gradient(135deg, #818cf8, #6366f1, #a78bfa);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--accent), var(--accent-glow));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .badge {
-            display: inline-block;
-            background: rgba(99, 102, 241, 0.2);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8em;
-            color: #a78bfa;
-            margin-top: 10px;
+
+        .logo img {
+            height: 32px;
+            width: auto;
         }
+
+        nav ul {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        nav ul li button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .hamburger-menu {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                text-align: center;
+                padding: 1rem 0;
+            }
+            nav ul.show {
+                display: flex;
+            }
+            .hamburger-menu {
+                display: block;
+            }
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .supported-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            padding: 8px 16px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .supported-websites {
+            color: var(--accent-glow);
+            font-weight: 600;
+        }
+
+        /* Card */
         .card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
             border-radius: 24px;
             padding: 30px;
             backdrop-filter: blur(10px);
             margin-bottom: 20px;
         }
-        .form-group { margin-bottom: 20px; }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
         label {
             display: block;
-            color: #cbd5e1;
+            color: var(--text-secondary);
             margin-bottom: 8px;
             font-weight: 500;
         }
-        textarea, select {
+
+        textarea, select, input {
             width: 100%;
             padding: 14px 16px;
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: var(--input-bg);
+            border: 1px solid var(--border);
             border-radius: 14px;
-            color: #fff;
-            font-size: 0.95em;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            transition: all 0.3s;
         }
-        textarea:focus, select:focus {
+
+        textarea:focus, select:focus, input:focus {
             outline: none;
-            border-color: #6366f1;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
         }
+
+        textarea {
+            resize: vertical;
+            font-family: monospace;
+        }
+
         button {
             width: 100%;
             padding: 14px;
-            background: linear-gradient(135deg, #6366f1, #7c3aed);
+            background: linear-gradient(135deg, var(--accent), #7c3aed);
             color: white;
             border: none;
             border-radius: 14px;
-            font-size: 1em;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
         }
-        button:hover { transform: translateY(-2px); filter: brightness(1.05); }
-        button:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+        button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            filter: brightness(1.05);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Result */
         .result-card {
             margin-top: 20px;
             padding: 20px;
-            background: rgba(0, 0, 0, 0.4);
+            background: var(--input-bg);
             border-radius: 16px;
             display: none;
-            border: 1px solid rgba(99, 102, 241, 0.3);
+            border: 1px solid var(--accent);
         }
-        .result-card.show { display: block; animation: fadeIn 0.3s ease; }
+
+        .result-card.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
         .result-url {
-            background: #0a0a0f;
+            background: rgba(0, 0, 0, 0.3);
             padding: 14px;
             border-radius: 12px;
             word-break: break-all;
             font-family: monospace;
-            color: #a78bfa;
+            color: var(--accent-glow);
             margin: 15px 0;
         }
-        .btn-group { display: flex; gap: 12px; margin-top: 15px; }
-        .btn-group button { width: auto; padding: 10px 20px; }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-group button {
+            width: auto;
+            padding: 10px 20px;
+        }
+
         .btn-copy { background: rgba(99, 102, 241, 0.3); }
         .btn-open { background: rgba(34, 197, 94, 0.3); }
-        .progress-container { margin: 20px 0; display: none; }
+
+        /* Progress */
+        .progress-container {
+            margin: 20px 0;
+            display: none;
+        }
+
         .progress-bar {
             width: 100%;
             height: 4px;
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--border);
             border-radius: 4px;
             overflow: hidden;
         }
+
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #6366f1, #a78bfa);
+            background: linear-gradient(90deg, var(--accent), var(--accent-glow));
             width: 0%;
             transition: width 0.1s linear;
         }
-        .status-text { text-align: center; margin-top: 12px; color: #94a3b8; font-size: 0.85em; }
+
+        .status-text {
+            text-align: center;
+            margin-top: 12px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* Alerts */
         .alert {
             padding: 12px 16px;
             border-radius: 12px;
             margin-bottom: 20px;
             display: none;
         }
-        .alert-error { background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; }
-        .alert-success { background: rgba(34, 197, 94, 0.15); border: 1px solid rgba(34, 197, 94, 0.3); color: #4ade80; }
+        .alert-error { background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: var(--error); }
+        .alert-success { background: rgba(34, 197, 94, 0.15); border: 1px solid rgba(34, 197, 94, 0.3); color: var(--success); }
         .alert-info { background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.3); color: #60a5fa; }
-        .domain-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+
+        /* Popup */
+        .popup, .key-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 25px;
+            z-index: 1000;
+            max-width: 90%;
+            width: 400px;
+            backdrop-filter: blur(20px);
+        }
+
+        .overlay, .key-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+        }
+
+        .popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            width: auto;
+        }
+
+        #popup-body {
+            max-height: 400px;
+            overflow-y: auto;
+            word-break: break-all;
+        }
+
+        .key-status {
+            margin-top: 10px;
+            font-size: 0.85rem;
+        }
+        .key-status.success { color: var(--success); }
+        .key-status.error { color: var(--error); }
+
+        /* Domain tags */
+        .domain-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
         .domain-tag {
             background: rgba(99, 102, 241, 0.15);
             padding: 4px 12px;
             border-radius: 20px;
-            font-size: 0.7em;
-            color: #a78bfa;
+            font-size: 0.7rem;
+            color: var(--accent-glow);
         }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .checkbox-group input {
+            width: auto;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        @media (max-width: 600px) {
-            .card { padding: 20px; }
-            .logo { font-size: 2em; }
-            .btn-group { flex-direction: column; }
-            .btn-group button { width: 100%; }
-        }
     </style>
 </head>
 <body>
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span>⚡ izen.lol</span>
+            </a>
+            <button class="hamburger-menu">☰</button>
+            <ul>
+                <li><button id="darkModeToggle" aria-label="Switch theme">🌙</button></li>
+                <li><button id="apiKeyButton" style="opacity:0.7">🔑 API Key</button></li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
         <div class="header">
-            <div class="logo">izen.lol</div>
-            <div class="badge">⚡ Support: Platorelay | Platoboost | Linkvertise | Work.ink | +200 Sites</div>
+            <h1>Link Bypasser</h1>
+            <div class="supported-badge">
+                <span>🎯 Currently supporting:</span>
+                <span class="supported-websites">Linkvertise</span>
+            </div>
         </div>
 
         <div class="card">
             <div id="alert" class="alert"></div>
 
             <div class="form-group">
-                <label>🔗 Masukkan Link Shortener</label>
-                <textarea id="linkInput" rows="3" placeholder="Contoh:&#10;https://auth.platorelay.com/...&#10;https://auth.platoboost.app/...&#10;https://linkvertise.com/...&#10;https://work.ink/..."></textarea>
+                <label>🔗 Enter your link</label>
+                <textarea id="linkInput" rows="3" placeholder="https://auth.platorelay.com/...&#10;https://linkvertise.com/...&#10;https://work.ink/..."></textarea>
             </div>
 
             <div class="form-group">
-                <label>⚙️ Pilih API</label>
+                <label>⚙️ Bypass Method</label>
                 <select id="apiSelect">
                     <option value="auto">Auto Detect (Recommended)</option>
-                    <option value="anabot">Anabot API</option>
-                    <option value="bypassvip">Bypass.vip API</option>
+                    <option value="anabot">Anabot API (Free)</option>
+                    <option value="bypassvip">Bypass.vip (Free + Premium)</option>
+                    <option value="multiple">Multiple API (Fallback)</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label>⏱️ Waktu Tunggu (detik)</label>
-                <input type="number" id="waitTime" value="3" min="0" max="10">
+                <label>⏱️ Wait time (seconds)</label>
+                <input type="number" id="waitTime" value="2" min="0" max="10">
             </div>
 
-            <button id="bypassBtn">🚀 Bypass Link Sekarang</button>
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="autoRedirect" checked>
+                <label>Auto-redirect after bypass</label>
+            </div>
+
+            <button id="bypassBtn">🚀 Bypass Now</button>
 
             <div class="progress-container" id="progressContainer">
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressFill"></div>
                 </div>
-                <div class="status-text" id="statusText">Memulai proses...</div>
+                <div class="status-text" id="statusText">Starting...</div>
             </div>
 
             <div class="result-card" id="resultCard">
-                <h3 style="color: #cbd5e1; margin-bottom: 10px;">✅ Hasil Bypass:</h3>
+                <h3 style="margin-bottom: 10px;">✅ Bypass Result:</h3>
                 <div class="result-url" id="resultUrl"></div>
                 <div class="btn-group">
-                    <button class="btn-copy" id="copyBtn">📋 Salin Link</button>
-                    <button class="btn-open" id="openBtn">🔗 Buka Link</button>
+                    <button class="btn-copy" id="copyBtn">📋 Copy</button>
+                    <button class="btn-open" id="openBtn">🔗 Open</button>
                 </div>
             </div>
         </div>
 
         <div class="card">
             <details>
-                <summary style="color: #94a3b8; cursor: pointer; padding: 10px;">📋 Domain yang Didukung</summary>
+                <summary style="color: var(--text-secondary); cursor: pointer;">📋 Supported Domains (200+)</summary>
                 <div class="domain-list" style="margin-top: 15px;">
                     <span class="domain-tag">auth.platorelay.com</span>
                     <span class="domain-tag">auth.platoboost.app</span>
-                    <span class="domain-tag">auth.platoboost.me</span>
                     <span class="domain-tag">linkvertise.com</span>
                     <span class="domain-tag">work.ink</span>
                     <span class="domain-tag">sub2unlock.com</span>
@@ -216,196 +484,438 @@
         </div>
     </div>
 
-    <script>
-        let currentResult = '';
+    <!-- Popup for result -->
+    <div id="overlay" class="overlay"></div>
+    <div id="popup" class="popup">
+        <div class="popup-header">
+            <h3>Result</h3>
+            <button class="close-btn" id="closePopup">×</button>
+        </div>
+        <div id="popup-body"></div>
+        <div class="btn-group" style="margin-top: 15px;">
+            <button id="copyContent">Copy</button>
+            <button id="openLink">Open Link</button>
+        </div>
+    </div>
 
+    <!-- API Key Popup -->
+    <div id="keyOverlay" class="key-overlay"></div>
+    <div id="keyPopup" class="key-popup">
+        <div class="popup-header">
+            <h3>🔑 API Key Management</h3>
+            <button class="close-btn" id="closeKeyPopup">×</button>
+        </div>
+        <div class="form-group">
+            <label>Bypass.vip API Key (Optional)</label>
+            <input type="password" id="apiKeyInput" placeholder="Enter your premium API key">
+        </div>
+        <div class="form-group checkbox-group">
+            <input type="checkbox" id="refreshToggle">
+            <label>Use refresh endpoint (premium/refresh)</label>
+        </div>
+        <button id="saveKeyButton">Save Key</button>
+        <button id="clearKeyButton" style="margin-top: 10px; background: rgba(239,68,68,0.3);">Clear Key</button>
+        <div id="keyStatus" class="key-status"></div>
+        <small style="display: block; margin-top: 10px; color: var(--text-secondary);">
+            💡 No API key? Free tier uses hCaptcha. Get premium at bypass.vip
+        </small>
+    </div>
+
+    <!-- hCaptcha container (invisible) -->
+    <div id="hcaptcha-container" style="position: fixed; bottom: 0; right: 0; opacity: 0; pointer-events: none;"></div>
+
+    <script src="https://js.hcaptcha.com/1/api.js?render=explicit" async defer></script>
+    <script>
+        // ==================== DOM Elements ====================
+        const apiKeyButton = document.getElementById('apiKeyButton');
+        const keyPopup = document.getElementById('keyPopup');
+        const keyOverlay = document.getElementById('keyOverlay');
+        const closeKeyPopup = document.getElementById('closeKeyPopup');
+        const apiKeyInput = document.getElementById('apiKeyInput');
+        const saveKeyButton = document.getElementById('saveKeyButton');
+        const clearKeyButton = document.getElementById('clearKeyButton');
+        const keyStatus = document.getElementById('keyStatus');
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const refreshToggle = document.getElementById('refreshToggle');
+        const bypassBtn = document.getElementById('bypassBtn');
+        const linkInput = document.getElementById('linkInput');
+        const apiSelect = document.getElementById('apiSelect');
+        const waitTimeInput = document.getElementById('waitTime');
+        const autoRedirect = document.getElementById('autoRedirect');
+        const resultCard = document.getElementById('resultCard');
+        const resultUrlEl = document.getElementById('resultUrl');
+        const copyBtn = document.getElementById('copyBtn');
+        const openBtn = document.getElementById('openBtn');
+        const progressContainer = document.getElementById('progressContainer');
+        const progressFill = document.getElementById('progressFill');
+        const statusText = document.getElementById('statusText');
+        const alertDiv = document.getElementById('alert');
+        
+        // Popup elements
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        const popupBody = document.getElementById('popup-body');
+        const closePopup = document.getElementById('closePopup');
+        const copyContent = document.getElementById('copyContent');
+        const openLink = document.getElementById('openLink');
+
+        // Supported websites rotation
+        const websites = ['Linkvertise', 'Lootlinks', 'Platorelay', 'Platoboost', 'Work.ink', 'Boost.ink', 'Mboost.me', 'Socialwolvez', 'Sub2unlock', 'Rekonise', 'URL shortener'];
+        let currentIndex = Math.floor(Math.random() * websites.length);
+        const supportedWebsitesElement = document.querySelector('.supported-websites');
+        
+        if (supportedWebsitesElement) {
+            supportedWebsitesElement.style.transition = 'opacity 0.5s ease-in-out';
+            setInterval(() => {
+                let nextIndex;
+                do { nextIndex = Math.floor(Math.random() * websites.length); } 
+                while (nextIndex === currentIndex);
+                currentIndex = nextIndex;
+                supportedWebsitesElement.style.opacity = '0';
+                setTimeout(() => {
+                    supportedWebsitesElement.textContent = websites[currentIndex];
+                    supportedWebsitesElement.style.opacity = '1';
+                }, 500);
+            }, 6500);
+        }
+
+        // ==================== Theme ====================
+        function setTheme(theme) {
+            const body = document.body;
+            if (theme === 'light') {
+                body.classList.add('light-mode');
+                darkModeToggle.innerHTML = '☀️';
+            } else {
+                body.classList.remove('light-mode');
+                darkModeToggle.innerHTML = '🌙';
+            }
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) setTheme(savedTheme);
+        else if (window.matchMedia('(prefers-color-scheme: light)').matches) setTheme('light');
+        else setTheme('dark');
+
+        darkModeToggle.addEventListener('click', () => {
+            const newTheme = document.body.classList.contains('light-mode') ? 'dark' : 'light';
+            setTheme(newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // ==================== API Key Management ====================
+        let savedKey = localStorage.getItem('apiKey');
+        const savedRefresh = localStorage.getItem('autoRefresh') === 'true';
+        if (savedRefresh) refreshToggle.checked = true;
+        if (savedKey) {
+            apiKeyButton.style.opacity = '1';
+            apiKeyInput.value = savedKey;
+        }
+
+        apiKeyButton.addEventListener('click', () => {
+            keyPopup.style.display = 'block';
+            keyOverlay.style.display = 'block';
+        });
+
+        function hideKeyPopup() {
+            keyPopup.style.display = 'none';
+            keyOverlay.style.display = 'none';
+            keyStatus.textContent = '';
+            keyStatus.className = 'key-status';
+        }
+
+        closeKeyPopup.addEventListener('click', hideKeyPopup);
+        keyOverlay.addEventListener('click', hideKeyPopup);
+
+        saveKeyButton.addEventListener('click', () => {
+            const key = apiKeyInput.value.trim();
+            if (key) {
+                savedKey = key;
+                localStorage.setItem('apiKey', key);
+                localStorage.setItem('autoRefresh', refreshToggle.checked);
+                keyStatus.textContent = '✅ API key saved!';
+                keyStatus.className = 'key-status success';
+                apiKeyButton.style.opacity = '1';
+                setTimeout(hideKeyPopup, 1500);
+            } else {
+                keyStatus.textContent = '❌ Please enter a valid API key';
+                keyStatus.className = 'key-status error';
+            }
+        });
+
+        clearKeyButton.addEventListener('click', () => {
+            localStorage.removeItem('apiKey');
+            localStorage.removeItem('autoRefresh');
+            apiKeyInput.value = '';
+            refreshToggle.checked = false;
+            savedKey = null;
+            apiKeyButton.style.opacity = '0.7';
+            keyStatus.textContent = '🗑️ API key cleared';
+            keyStatus.className = 'key-status success';
+            setTimeout(hideKeyPopup, 1500);
+        });
+
+        refreshToggle.addEventListener('change', () => {
+            localStorage.setItem('autoRefresh', refreshToggle.checked);
+        });
+
+        // ==================== Helper Functions ====================
         function showAlert(message, type) {
-            const alert = document.getElementById('alert');
-            alert.textContent = message;
-            alert.className = `alert alert-${type}`;
-            alert.style.display = 'block';
-            setTimeout(() => { alert.style.display = 'none'; }, 5000);
+            alertDiv.textContent = message;
+            alertDiv.className = `alert alert-${type}`;
+            alertDiv.style.display = 'block';
+            setTimeout(() => { alertDiv.style.display = 'none'; }, 5000);
         }
 
         async function copyToClipboard(text) {
             try {
                 await navigator.clipboard.writeText(text);
-                showAlert('Link berhasil disalin!', 'success');
+                showAlert('Link copied!', 'success');
             } catch (err) {
-                showAlert('Gagal menyalin link', 'error');
+                showAlert('Failed to copy', 'error');
             }
         }
 
         function updateProgress(percent, text) {
-            const fill = document.getElementById('progressFill');
-            const status = document.getElementById('statusText');
-            fill.style.width = `${percent}%`;
-            if (text) status.textContent = text;
+            progressFill.style.width = `${percent}%`;
+            if (text) statusText.textContent = text;
         }
 
-        function detectService(url) {
-            const urlLower = url.toLowerCase();
-            if (urlLower.includes('auth.platorelay.com') || 
-                urlLower.includes('auth.platoboost.app') || 
-                urlLower.includes('auth.platoboost.me')) {
-                return 'platoboost';
-            }
-            if (urlLower.includes('linkvertise.com')) return 'linkvertise';
-            if (urlLower.includes('work.ink')) return 'workink';
-            if (urlLower.includes('sub2unlock')) return 'sub2unlock';
-            if (urlLower.includes('loot')) return 'loot';
-            return 'generic';
+        function isValidUrl(string) {
+            try { new URL(string); return true; } 
+            catch { return false; }
         }
 
-        async function bypassPlatoboost(url) {
-            updateProgress(15, 'Mendeteksi link Platoboost/Platorelay...');
-            
-            // Ekstrak ticket dari URL
-            let ticket = url.split('/').pop();
-            ticket = decodeURIComponent(ticket);
-            const encodedTicket = encodeURIComponent(ticket);
-            
-            updateProgress(30, `Memproses ticket...`);
-            
-            // Gunakan API anabot
-            const apiUrl = `https://anabot.my.id/api/tools/izenLOL?url=${encodeURIComponent(url)}&apikey=free`;
-            
-            const response = await fetch(apiUrl, {
-                headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' },
-                signal: AbortSignal.timeout(15000)
-            });
-            
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            
-            const data = await response.json();
-            
-            if (data.success && data.data?.result?.result) {
-                return data.data.result.result;
+        function showPopup(content) {
+            if (isValidUrl(content)) {
+                popupBody.innerHTML = `<a href="${content}" target="_blank">${content}</a>`;
+                openLink.hidden = false;
+            } else {
+                popupBody.innerHTML = content.replace(/\n/g, '<br>');
+                openLink.hidden = true;
             }
-            
-            if (data.result && typeof data.result === 'string' && data.result.startsWith('http')) {
-                return data.result;
-            }
-            
-            throw new Error('Gagal bypass Platoboost');
+            popup.style.display = 'block';
+            overlay.style.display = 'block';
         }
 
+        function hidePopup() {
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+        }
+
+        closePopup.addEventListener('click', hidePopup);
+        overlay.addEventListener('click', hidePopup);
+        
+        copyContent.addEventListener('click', () => {
+            const content = popupBody.innerHTML.replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]*>/g, '');
+            copyToClipboard(content);
+        });
+        
+        openLink.addEventListener('click', () => {
+            const link = popupBody.querySelector('a');
+            if (link) window.open(link.href, '_blank');
+        });
+
+        // ==================== Bypass Functions ====================
         async function bypassWithAnabot(url) {
-            updateProgress(20, 'Menghubungi API Anabot...');
+            updateProgress(20, 'Connecting to Anabot API...');
             const response = await fetch(`https://anabot.my.id/api/tools/izenLOL?url=${encodeURIComponent(url)}&apikey=free`, {
                 headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' }
             });
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             const data = await response.json();
-            if (!data.success) throw new Error(data.message || 'Bypass gagal');
+            if (!data.success) throw new Error(data.message || 'Bypass failed');
             return data.data?.result?.result || data.result || null;
         }
 
         async function bypassWithBypassVip(url) {
-            updateProgress(20, 'Menghubungi Bypass.vip...');
-            const response = await fetch(`https://api.bypass.vip/?url=${encodeURIComponent(url)}`, {
-                headers: { 'Accept': 'application/json' }
-            });
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            const data = await response.json();
-            return data.destination || data.url || data.result || null;
+            const hasKey = localStorage.getItem('apiKey');
+            const useRefresh = localStorage.getItem('autoRefresh') === 'true';
+            
+            updateProgress(20, hasKey ? 'Using premium API...' : 'Using free API with hCaptcha...');
+            
+            if (!hasKey) {
+                // Free tier with hCaptcha
+                await new Promise(resolve => setTimeout(resolve, 500));
+                const hcaptcha = window.hcaptcha;
+                if (!hcaptcha) throw new Error('hCaptcha not loaded');
+                
+                const container = document.getElementById('hcaptcha-container');
+                const widgetId = hcaptcha.render(container, {
+                    sitekey: '69a3b3f1-9884-4e4f-b381-2843c64d955d',
+                    size: 'invisible'
+                });
+                
+                const token = await hcaptcha.execute(widgetId, { async: true });
+                if (!token?.response) throw new Error('hCaptcha failed');
+                
+                const response = await fetch(`https://api.bypass.vip/bypass?url=${encodeURIComponent(url)}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ url, hcaptchaToken: token.response })
+                });
+                hcaptcha.reset();
+                
+                if (!response.ok) throw new Error(`API error: ${response.status}`);
+                const data = await response.json();
+                return data.destination || data.url || data.result;
+            } else {
+                // Premium tier
+                const endpoint = useRefresh ? 'https://api.bypass.vip/premium/refresh' : 'https://api.bypass.vip/premium/bypass';
+                const response = await fetch(`${endpoint}?url=${encodeURIComponent(url)}`, {
+                    headers: { 'x-api-key': hasKey }
+                });
+                
+                if (response.status === 401) throw new Error('Invalid API key');
+                if (!response.ok) throw new Error(`API error: ${response.status}`);
+                
+                const data = await response.json();
+                return data.destination || data.url || data.result;
+            }
+        }
+
+        async function bypassWithMultiple(url) {
+            const apis = [
+                () => bypassWithAnabot(url),
+                () => bypassWithBypassVip(url)
+            ];
+            
+            for (const api of apis) {
+                try {
+                    const result = await api();
+                    if (result && isValidUrl(result)) return result;
+                } catch (e) {
+                    console.log('API failed:', e);
+                    continue;
+                }
+            }
+            throw new Error('All APIs failed');
+        }
+
+        function detectService(url) {
+            const u = url.toLowerCase();
+            if (u.includes('platorelay') || u.includes('platoboost')) return 'platoboost';
+            if (u.includes('linkvertise')) return 'linkvertise';
+            return 'generic';
+        }
+
+        async function bypassPlatoboost(url) {
+            updateProgress(15, 'Detecting Platoboost/Platorelay...');
+            // Platoboost uses same system as Linkvertise
+            return await bypassWithAnabot(url);
         }
 
         async function startCountdown(seconds, callback) {
             for (let i = seconds; i > 0; i--) {
-                updateProgress(100 - (i / seconds) * 30, `⏳ Redirect dalam ${i} detik...`);
+                updateProgress(100 - (i / seconds) * 30, `⏳ Redirecting in ${i} seconds...`);
                 await new Promise(resolve => setTimeout(resolve, 1000));
             }
             callback();
         }
 
         async function processBypass() {
-            const linkInput = document.getElementById('linkInput');
-            const bypassBtn = document.getElementById('bypassBtn');
-            const apiSelect = document.getElementById('apiSelect').value;
-            const waitTime = parseInt(document.getElementById('waitTime').value);
-            const progressContainer = document.getElementById('progressContainer');
-            const resultCard = document.getElementById('resultCard');
-            const resultUrlEl = document.getElementById('resultUrl');
-            
             let url = linkInput.value.trim();
-            
             if (!url) {
-                showAlert('Masukkan link terlebih dahulu!', 'error');
+                showAlert('Please enter a link', 'error');
                 return;
             }
-            
             if (!url.startsWith('http')) url = 'https://' + url;
-            
-            try { new URL(url); } catch (e) {
-                showAlert('URL tidak valid!', 'error');
+            if (!isValidUrl(url)) {
+                showAlert('Invalid URL', 'error');
                 return;
             }
-            
+
+            const method = apiSelect.value;
+            const waitTime = parseInt(waitTimeInput.value) || 0;
+            const doRedirect = autoRedirect.checked;
+
             bypassBtn.disabled = true;
-            bypassBtn.innerHTML = '⏳ Memproses...';
+            bypassBtn.innerHTML = '⏳ Processing...';
             resultCard.classList.remove('show');
             progressContainer.style.display = 'block';
-            updateProgress(0, 'Memulai bypass...');
-            
+            updateProgress(0, 'Starting bypass...');
+
             try {
                 const service = detectService(url);
                 let result = null;
-                
-                if (service === 'platoboost') {
-                    result = await bypassPlatoboost(url);
-                } else if (apiSelect === 'anabot' || apiSelect === 'auto') {
+
+                updateProgress(10, `Detected: ${service}`);
+
+                if (method === 'anabot') {
                     result = await bypassWithAnabot(url);
-                } else if (apiSelect === 'bypassvip') {
+                } else if (method === 'bypassvip') {
                     result = await bypassWithBypassVip(url);
+                } else if (method === 'multiple') {
+                    result = await bypassWithMultiple(url);
                 } else {
-                    result = await bypassWithAnabot(url);
+                    // Auto detect
+                    if (service === 'platoboost') {
+                        result = await bypassPlatoboost(url);
+                    } else {
+                        try {
+                            result = await bypassWithAnabot(url);
+                        } catch (e) {
+                            result = await bypassWithBypassVip(url);
+                        }
+                    }
                 }
-                
-                updateProgress(70, 'Menganalisis hasil...');
-                
-                if (!result || !result.startsWith('http')) {
-                    throw new Error('Hasil bypass tidak valid');
+
+                updateProgress(70, 'Analyzing result...');
+
+                if (!result || !isValidUrl(result)) {
+                    throw new Error('Invalid bypass result');
                 }
-                
+
                 currentResult = result;
                 resultUrlEl.textContent = result;
                 resultCard.classList.add('show');
-                updateProgress(100, '✅ Bypass berhasil!');
-                
-                if (waitTime > 0) {
-                    await startCountdown(waitTime, () => { window.open(result, '_blank'); });
-                } else {
+                updateProgress(100, '✅ Bypass successful!');
+
+                if (doRedirect && waitTime > 0) {
+                    await startCountdown(waitTime, () => {
+                        window.open(result, '_blank');
+                    });
+                } else if (doRedirect) {
                     window.open(result, '_blank');
                 }
-                
-                showAlert('Link berhasil di-bypass!', 'success');
-                
+
+                showAlert('Link bypassed successfully!', 'success');
+
             } catch (error) {
                 console.error('Error:', error);
-                showAlert(`Gagal bypass: ${error.message}`, 'error');
-                updateProgress(0, '❌ Bypass gagal');
+                showAlert(`Bypass failed: ${error.message}`, 'error');
+                updateProgress(0, '❌ Bypass failed');
             } finally {
                 bypassBtn.disabled = false;
-                bypassBtn.innerHTML = '🚀 Bypass Link Sekarang';
-                setTimeout(() => { progressContainer.style.display = 'none'; }, 2000);
+                bypassBtn.innerHTML = '🚀 Bypass Now';
+                setTimeout(() => {
+                    progressContainer.style.display = 'none';
+                }, 2000);
             }
         }
 
-        // Event listeners
-        document.getElementById('bypassBtn').addEventListener('click', processBypass);
-        document.getElementById('copyBtn').addEventListener('click', () => {
+        // ==================== Event Listeners ====================
+        bypassBtn.addEventListener('click', processBypass);
+        copyBtn.addEventListener('click', () => {
             if (currentResult) copyToClipboard(currentResult);
         });
-        document.getElementById('openBtn').addEventListener('click', () => {
+        openBtn.addEventListener('click', () => {
             if (currentResult) window.open(currentResult, '_blank');
         });
-        
-        document.getElementById('linkInput').addEventListener('keydown', (e) => {
+
+        linkInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' && e.ctrlKey) processBypass();
         });
-        
-        console.log('Tool siap digunakan! Support Platoboost, Platorelay, Linkvertise, dll');
+
+        // Hamburger menu
+        const hamburger = document.querySelector('.hamburger-menu');
+        const navList = document.querySelector('nav ul');
+        hamburger?.addEventListener('click', () => navList?.classList.toggle('show'));
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('nav')) navList?.classList.remove('show');
+        });
+
+        let currentResult = '';
+        console.log('✅ izen.lol Bypasser ready! Supports Platoboost, Platorelay, Linkvertise, and 200+ more.');
     </script>
 </body>
 </html>
