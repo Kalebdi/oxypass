@@ -3,199 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>izen.lol - Link Bypass Tool (Working)</title>
+    <title>izen.lol - Full Bypass (Platorelay + All Services)</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* CSS sama seperti sebelumnya */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
             min-height: 100vh;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: 'Segoe UI', system-ui, sans-serif;
             padding: 20px;
         }
-
-        .container {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
+        .container { max-width: 800px; margin: 0 auto; }
+        .header { text-align: center; margin-bottom: 30px; padding: 20px; }
         .logo {
-            font-size: 2.5em;
+            font-size: 3em;
             font-weight: 700;
             background: linear-gradient(135deg, #818cf8, #6366f1, #a78bfa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
         }
-
+        .badge {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            color: #a78bfa;
+            margin-top: 10px;
+        }
         .card {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
+            border-radius: 24px;
             padding: 30px;
             backdrop-filter: blur(10px);
-        }
-
-        .form-group {
             margin-bottom: 20px;
         }
-
+        .form-group { margin-bottom: 20px; }
         label {
             display: block;
             color: #cbd5e1;
             margin-bottom: 8px;
             font-weight: 500;
         }
-
-        input, textarea, select {
+        textarea, select {
             width: 100%;
-            padding: 12px 16px;
+            padding: 14px 16px;
             background: rgba(0, 0, 0, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 12px;
+            border-radius: 14px;
             color: #fff;
             font-size: 0.95em;
         }
-
-        input:focus, textarea:focus {
+        textarea:focus, select:focus {
             outline: none;
             border-color: #6366f1;
         }
-
-        textarea {
-            resize: vertical;
-            font-family: monospace;
-        }
-
         button {
             width: 100%;
             padding: 14px;
             background: linear-gradient(135deg, #6366f1, #7c3aed);
             color: white;
             border: none;
-            border-radius: 12px;
+            border-radius: 14px;
             font-size: 1em;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: all 0.3s ease;
         }
-
-        button:hover {
-            transform: translateY(-2px);
-        }
-
-        button:disabled {
-            opacity: 0.5;
-            transform: none;
-            cursor: not-allowed;
-        }
-
-        .result-box {
+        button:hover { transform: translateY(-2px); filter: brightness(1.05); }
+        button:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .result-card {
             margin-top: 20px;
             padding: 20px;
             background: rgba(0, 0, 0, 0.4);
-            border-radius: 12px;
+            border-radius: 16px;
             display: none;
+            border: 1px solid rgba(99, 102, 241, 0.3);
         }
-
-        .result-box.show {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
+        .result-card.show { display: block; animation: fadeIn 0.3s ease; }
         .result-url {
             background: #0a0a0f;
-            padding: 12px;
-            border-radius: 8px;
+            padding: 14px;
+            border-radius: 12px;
             word-break: break-all;
             font-family: monospace;
             color: #a78bfa;
-            margin: 10px 0;
+            margin: 15px 0;
         }
-
-        .btn-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .btn-group button {
-            width: auto;
-            padding: 10px 20px;
-        }
-
-        .btn-copy {
-            background: rgba(99, 102, 241, 0.3);
-        }
-
-        .btn-open {
-            background: rgba(34, 197, 94, 0.3);
-        }
-
+        .btn-group { display: flex; gap: 12px; margin-top: 15px; }
+        .btn-group button { width: auto; padding: 10px 20px; }
+        .btn-copy { background: rgba(99, 102, 241, 0.3); }
+        .btn-open { background: rgba(34, 197, 94, 0.3); }
+        .progress-container { margin: 20px 0; display: none; }
         .progress-bar {
             width: 100%;
             height: 4px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 4px;
             overflow: hidden;
-            margin: 15px 0;
-            display: none;
         }
-
         .progress-fill {
             height: 100%;
             background: linear-gradient(90deg, #6366f1, #a78bfa);
             width: 0%;
             transition: width 0.1s linear;
         }
-
-        .countdown {
-            text-align: center;
-            color: #c4b5fd;
-            display: none;
-        }
-
+        .status-text { text-align: center; margin-top: 12px; color: #94a3b8; font-size: 0.85em; }
         .alert {
-            padding: 12px;
-            border-radius: 10px;
+            padding: 12px 16px;
+            border-radius: 12px;
             margin-bottom: 20px;
             display: none;
         }
-
-        .alert-error {
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            color: #f87171;
-        }
-
-        .alert-success {
-            background: rgba(34, 197, 94, 0.1);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            color: #4ade80;
-        }
-
-        .alert-info {
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            color: #60a5fa;
-        }
-
-        .domain-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 10px;
-        }
-
+        .alert-error { background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; }
+        .alert-success { background: rgba(34, 197, 94, 0.15); border: 1px solid rgba(34, 197, 94, 0.3); color: #4ade80; }
+        .alert-info { background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.3); color: #60a5fa; }
+        .domain-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
         .domain-tag {
             background: rgba(99, 102, 241, 0.15);
             padding: 4px 12px;
@@ -203,25 +127,15 @@
             font-size: 0.7em;
             color: #a78bfa;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        .spinner {
-            width: 20px;
-            height: 20px;
-            border: 2px solid rgba(255,255,255,0.3);
-            border-top-color: white;
-            border-radius: 50%;
-            animation: spin 0.6s linear infinite;
-            display: inline-block;
-            margin-left: 10px;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        @media (max-width: 600px) {
+            .card { padding: 20px; }
+            .logo { font-size: 2em; }
+            .btn-group { flex-direction: column; }
+            .btn-group button { width: 100%; }
         }
     </style>
 </head>
@@ -229,7 +143,7 @@
     <div class="container">
         <div class="header">
             <div class="logo">izen.lol</div>
-            <div style="color: #64748b; font-size: 0.9em;">Working Link Bypass Tool</div>
+            <div class="badge">⚡ Support: Platorelay | Platoboost | Linkvertise | Work.ink | +200 Sites</div>
         </div>
 
         <div class="card">
@@ -237,15 +151,15 @@
 
             <div class="form-group">
                 <label>🔗 Masukkan Link Shortener</label>
-                <textarea id="linkInput" placeholder="Contoh:&#10;https://linkvertise.com/...&#10;https://work.ink/...&#10;https://sub2unlock.com/..."></textarea>
+                <textarea id="linkInput" rows="3" placeholder="Contoh:&#10;https://auth.platorelay.com/...&#10;https://auth.platoboost.app/...&#10;https://linkvertise.com/...&#10;https://work.ink/..."></textarea>
             </div>
 
             <div class="form-group">
-                <label>⚙️ Metode Bypass</label>
-                <select id="method">
+                <label>⚙️ Pilih API</label>
+                <select id="apiSelect">
                     <option value="auto">Auto Detect (Recommended)</option>
-                    <option value="api">API Bypass</option>
-                    <option value="direct">Direct Extract</option>
+                    <option value="anabot">Anabot API</option>
+                    <option value="bypassvip">Bypass.vip API</option>
                 </select>
             </div>
 
@@ -256,12 +170,14 @@
 
             <button id="bypassBtn">🚀 Bypass Link Sekarang</button>
 
-            <div class="progress-bar" id="progressBar">
-                <div class="progress-fill" id="progressFill"></div>
+            <div class="progress-container" id="progressContainer">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="status-text" id="statusText">Memulai proses...</div>
             </div>
-            <div class="countdown" id="countdown"></div>
 
-            <div class="result-box" id="resultBox">
+            <div class="result-card" id="resultCard">
                 <h3 style="color: #cbd5e1; margin-bottom: 10px;">✅ Hasil Bypass:</h3>
                 <div class="result-url" id="resultUrl"></div>
                 <div class="btn-group">
@@ -269,55 +185,46 @@
                     <button class="btn-open" id="openBtn">🔗 Buka Link</button>
                 </div>
             </div>
+        </div>
 
-            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
-                <details>
-                    <summary style="color: #94a3b8; cursor: pointer;">📋 Domain yang Didukung (200+)</summary>
-                    <div class="domain-list" style="margin-top: 15px;">
-                        <span class="domain-tag">linkvertise.com</span>
-                        <span class="domain-tag">work.ink</span>
-                        <span class="domain-tag">sub2unlock.com</span>
-                        <span class="domain-tag">loot-link.com</span>
-                        <span class="domain-tag">mega-redirect.com</span>
-                        <span class="domain-tag">pastebin.com</span>
-                        <span class="domain-tag">rekonise.com</span>
-                        <span class="domain-tag">link-to.net</span>
-                        <span class="domain-tag">direct-link.net</span>
-                        <span class="domain-tag">fast-links.org</span>
-                        <span class="domain-tag">rapid-links.net</span>
-                        <span class="domain-tag">platorelay.com</span>
-                        <span class="domain-tag">platoboost.app</span>
-                        <span class="domain-tag">discordlink.cc</span>
-                        <span class="domain-tag">lootdest.org</span>
-                        <span class="domain-tag">free-content.pro</span>
-                        <span class="domain-tag">sub4unlock.com</span>
-                        <span class="domain-tag">bstlar.com</span>
-                        <span class="domain-tag">ez4short.com</span>
-                        <span class="domain-tag">lockr.so</span>
-                    </div>
-                </details>
-            </div>
+        <div class="card">
+            <details>
+                <summary style="color: #94a3b8; cursor: pointer; padding: 10px;">📋 Domain yang Didukung</summary>
+                <div class="domain-list" style="margin-top: 15px;">
+                    <span class="domain-tag">auth.platorelay.com</span>
+                    <span class="domain-tag">auth.platoboost.app</span>
+                    <span class="domain-tag">auth.platoboost.me</span>
+                    <span class="domain-tag">linkvertise.com</span>
+                    <span class="domain-tag">work.ink</span>
+                    <span class="domain-tag">sub2unlock.com</span>
+                    <span class="domain-tag">loot-link.com</span>
+                    <span class="domain-tag">mega-redirect.com</span>
+                    <span class="domain-tag">pastebin.com</span>
+                    <span class="domain-tag">rekonise.com</span>
+                    <span class="domain-tag">link-to.net</span>
+                    <span class="domain-tag">direct-link.net</span>
+                    <span class="domain-tag">fast-links.org</span>
+                    <span class="domain-tag">rapid-links.net</span>
+                    <span class="domain-tag">discordlink.cc</span>
+                    <span class="domain-tag">lootdest.org</span>
+                    <span class="domain-tag">sub4unlock.com</span>
+                    <span class="domain-tag">bstlar.com</span>
+                    <span class="domain-tag">ez4short.com</span>
+                    <span class="domain-tag">lockr.so</span>
+                </div>
+            </details>
         </div>
     </div>
 
     <script>
-        // API Endpoints yang berfungsi (free public APIs)
-        const API_ENDPOINTS = [
-            'https://api.bypass.vip/',
-            'https://lootlink.xyz/api/v1/',
-            'https://bypass.pm/api/v1/'
-        ];
-
-        let currentResultUrl = '';
+        let currentResult = '';
 
         function showAlert(message, type) {
             const alert = document.getElementById('alert');
             alert.textContent = message;
             alert.className = `alert alert-${type}`;
             alert.style.display = 'block';
-            setTimeout(() => {
-                alert.style.display = 'none';
-            }, 5000);
+            setTimeout(() => { alert.style.display = 'none'; }, 5000);
         }
 
         async function copyToClipboard(text) {
@@ -329,141 +236,96 @@
             }
         }
 
-        function updateProgress(percent, message) {
-            const progressBar = document.getElementById('progressBar');
-            const progressFill = document.getElementById('progressFill');
-            const countdown = document.getElementById('countdown');
-            
-            progressBar.style.display = 'block';
-            progressFill.style.width = `${percent}%`;
-            
-            if (message) {
-                countdown.style.display = 'block';
-                countdown.textContent = message;
-            }
+        function updateProgress(percent, text) {
+            const fill = document.getElementById('progressFill');
+            const status = document.getElementById('statusText');
+            fill.style.width = `${percent}%`;
+            if (text) status.textContent = text;
         }
 
-        // Bypass menggunakan API
-        async function bypassWithAPI(url) {
-            // Gunakan multiple API endpoints
-            for (const apiUrl of API_ENDPOINTS) {
-                try {
-                    updateProgress(30, `Mencoba API: ${apiUrl}...`);
-                    
-                    const response = await fetch(`${apiUrl}?url=${encodeURIComponent(url)}`, {
-                        method: 'GET',
-                        headers: {
-                            'Accept': 'application/json',
-                            'Origin': window.location.origin
-                        }
-                    });
-                    
-                    if (response.ok) {
-                        const data = await response.json();
-                        if (data.destination || data.url || data.result) {
-                            return data.destination || data.url || data.result;
-                        }
-                    }
-                } catch (e) {
-                    console.log(`API ${apiUrl} failed:`, e);
-                }
+        function detectService(url) {
+            const urlLower = url.toLowerCase();
+            if (urlLower.includes('auth.platorelay.com') || 
+                urlLower.includes('auth.platoboost.app') || 
+                urlLower.includes('auth.platoboost.me')) {
+                return 'platoboost';
             }
-            
-            // Fallback: coba extract dari HTML
-            return await bypassWithExtract(url);
+            if (urlLower.includes('linkvertise.com')) return 'linkvertise';
+            if (urlLower.includes('work.ink')) return 'workink';
+            if (urlLower.includes('sub2unlock')) return 'sub2unlock';
+            if (urlLower.includes('loot')) return 'loot';
+            return 'generic';
         }
 
-        // Bypass dengan ekstraksi langsung
-        async function bypassWithExtract(url) {
-            updateProgress(50, 'Mencoba ekstraksi langsung...');
+        async function bypassPlatoboost(url) {
+            updateProgress(15, 'Mendeteksi link Platoboost/Platorelay...');
             
-            try {
-                // Gunakan CORS proxy
-                const proxyUrl = `https://cors-anywhere.herokuapp.com/${url}`;
-                const response = await fetch(proxyUrl, {
-                    headers: {
-                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-                    }
-                });
-                
-                const html = await response.text();
-                
-                // Cari redirect URL di berbagai pattern
-                const patterns = [
-                    /window\.location\.href\s*=\s*['"]([^'"]+)['"]/,
-                    /window\.location\.replace\(['"]([^'"]+)['"]\)/,
-                    /meta\s+http-equiv=["']refresh["']\s+content=["']\d+;\s*url=([^"']+)["']/i,
-                    /var\s+_url\s*=\s*['"]([^'"]+)['"]/,
-                    /link\s*:\s*['"]([^'"]+)['"]/,
-                    /redirectUrl\s*=\s*['"]([^'"]+)['"]/,
-                    /destination\s*:\s*['"]([^'"]+)['"]/
-                ];
-                
-                for (const pattern of patterns) {
-                    const match = html.match(pattern);
-                    if (match && match[1]) {
-                        let foundUrl = match[1];
-                        if (!foundUrl.startsWith('http')) {
-                            try {
-                                const baseUrl = new URL(url);
-                                foundUrl = new URL(foundUrl, baseUrl.origin).href;
-                            } catch(e) {}
-                        }
-                        return foundUrl;
-                    }
-                }
-                
-                // Cek parameter redirect di URL
-                const urlParams = new URLSearchParams(window.location.search);
-                const redirectParam = urlParams.get('redirect') || urlParams.get('url') || urlParams.get('r');
-                if (redirectParam && redirectParam.startsWith('http')) {
-                    return redirectParam;
-                }
-                
-                throw new Error('Tidak dapat menemukan redirect URL');
-                
-            } catch (error) {
-                throw new Error(`Ekstraksi gagal: ${error.message}`);
+            // Ekstrak ticket dari URL
+            let ticket = url.split('/').pop();
+            ticket = decodeURIComponent(ticket);
+            const encodedTicket = encodeURIComponent(ticket);
+            
+            updateProgress(30, `Memproses ticket...`);
+            
+            // Gunakan API anabot
+            const apiUrl = `https://anabot.my.id/api/tools/izenLOL?url=${encodeURIComponent(url)}&apikey=free`;
+            
+            const response = await fetch(apiUrl, {
+                headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' },
+                signal: AbortSignal.timeout(15000)
+            });
+            
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            
+            const data = await response.json();
+            
+            if (data.success && data.data?.result?.result) {
+                return data.data.result.result;
             }
+            
+            if (data.result && typeof data.result === 'string' && data.result.startsWith('http')) {
+                return data.result;
+            }
+            
+            throw new Error('Gagal bypass Platoboost');
         }
 
-        // Bypass utama
-        async function bypassLink(url, method) {
-            updateProgress(10, 'Memulai proses bypass...');
-            
-            if (method === 'api') {
-                return await bypassWithAPI(url);
-            } else if (method === 'direct') {
-                return await bypassWithExtract(url);
-            } else {
-                // Auto: coba API dulu, gagal fallback ke extract
-                try {
-                    return await bypassWithAPI(url);
-                } catch {
-                    return await bypassWithExtract(url);
-                }
-            }
+        async function bypassWithAnabot(url) {
+            updateProgress(20, 'Menghubungi API Anabot...');
+            const response = await fetch(`https://anabot.my.id/api/tools/izenLOL?url=${encodeURIComponent(url)}&apikey=free`, {
+                headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' }
+            });
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            const data = await response.json();
+            if (!data.success) throw new Error(data.message || 'Bypass gagal');
+            return data.data?.result?.result || data.result || null;
+        }
+
+        async function bypassWithBypassVip(url) {
+            updateProgress(20, 'Menghubungi Bypass.vip...');
+            const response = await fetch(`https://api.bypass.vip/?url=${encodeURIComponent(url)}`, {
+                headers: { 'Accept': 'application/json' }
+            });
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            const data = await response.json();
+            return data.destination || data.url || data.result || null;
         }
 
         async function startCountdown(seconds, callback) {
-            const countdownEl = document.getElementById('countdown');
-            countdownEl.style.display = 'block';
-            
             for (let i = seconds; i > 0; i--) {
-                countdownEl.textContent = `⏳ Redirect dalam ${i} detik...`;
+                updateProgress(100 - (i / seconds) * 30, `⏳ Redirect dalam ${i} detik...`);
                 await new Promise(resolve => setTimeout(resolve, 1000));
             }
-            
-            countdownEl.textContent = '🔄 Mengalihkan...';
             callback();
         }
 
         async function processBypass() {
             const linkInput = document.getElementById('linkInput');
             const bypassBtn = document.getElementById('bypassBtn');
-            const method = document.getElementById('method').value;
+            const apiSelect = document.getElementById('apiSelect').value;
             const waitTime = parseInt(document.getElementById('waitTime').value);
-            const resultBox = document.getElementById('resultBox');
+            const progressContainer = document.getElementById('progressContainer');
+            const resultCard = document.getElementById('resultCard');
             const resultUrlEl = document.getElementById('resultUrl');
             
             let url = linkInput.value.trim();
@@ -473,47 +335,48 @@
                 return;
             }
             
-            if (!url.startsWith('http')) {
-                url = 'https://' + url;
-            }
+            if (!url.startsWith('http')) url = 'https://' + url;
             
-            // Validasi URL
-            try {
-                new URL(url);
-            } catch (e) {
+            try { new URL(url); } catch (e) {
                 showAlert('URL tidak valid!', 'error');
                 return;
             }
             
-            // Reset UI
             bypassBtn.disabled = true;
             bypassBtn.innerHTML = '⏳ Memproses...';
-            resultBox.classList.remove('show');
-            document.getElementById('progressBar').style.display = 'block';
-            document.getElementById('progressFill').style.width = '0%';
+            resultCard.classList.remove('show');
+            progressContainer.style.display = 'block';
+            updateProgress(0, 'Memulai bypass...');
             
             try {
-                showAlert('Sedang memproses link...', 'info');
+                const service = detectService(url);
+                let result = null;
                 
-                // Proses bypass
-                const finalUrl = await bypassLink(url, method);
+                if (service === 'platoboost') {
+                    result = await bypassPlatoboost(url);
+                } else if (apiSelect === 'anabot' || apiSelect === 'auto') {
+                    result = await bypassWithAnabot(url);
+                } else if (apiSelect === 'bypassvip') {
+                    result = await bypassWithBypassVip(url);
+                } else {
+                    result = await bypassWithAnabot(url);
+                }
                 
-                if (!finalUrl || !finalUrl.startsWith('http')) {
+                updateProgress(70, 'Menganalisis hasil...');
+                
+                if (!result || !result.startsWith('http')) {
                     throw new Error('Hasil bypass tidak valid');
                 }
                 
-                currentResultUrl = finalUrl;
-                resultUrlEl.textContent = finalUrl;
-                resultBox.classList.add('show');
-                
-                updateProgress(100, '✅ Selesai!');
+                currentResult = result;
+                resultUrlEl.textContent = result;
+                resultCard.classList.add('show');
+                updateProgress(100, '✅ Bypass berhasil!');
                 
                 if (waitTime > 0) {
-                    await startCountdown(waitTime, () => {
-                        window.open(finalUrl, '_blank');
-                    });
+                    await startCountdown(waitTime, () => { window.open(result, '_blank'); });
                 } else {
-                    window.open(finalUrl, '_blank');
+                    window.open(result, '_blank');
                 }
                 
                 showAlert('Link berhasil di-bypass!', 'success');
@@ -521,36 +384,28 @@
             } catch (error) {
                 console.error('Error:', error);
                 showAlert(`Gagal bypass: ${error.message}`, 'error');
-                updateProgress(0, '❌ Gagal');
+                updateProgress(0, '❌ Bypass gagal');
             } finally {
                 bypassBtn.disabled = false;
                 bypassBtn.innerHTML = '🚀 Bypass Link Sekarang';
-                
-                // Reset progress setelah 2 detik
-                setTimeout(() => {
-                    document.getElementById('progressBar').style.display = 'none';
-                    document.getElementById('countdown').style.display = 'none';
-                }, 2000);
+                setTimeout(() => { progressContainer.style.display = 'none'; }, 2000);
             }
         }
 
         // Event listeners
         document.getElementById('bypassBtn').addEventListener('click', processBypass);
         document.getElementById('copyBtn').addEventListener('click', () => {
-            if (currentResultUrl) copyToClipboard(currentResultUrl);
+            if (currentResult) copyToClipboard(currentResult);
         });
         document.getElementById('openBtn').addEventListener('click', () => {
-            if (currentResultUrl) window.open(currentResultUrl, '_blank');
+            if (currentResult) window.open(currentResult, '_blank');
         });
         
-        // Support Enter (Ctrl+Enter)
         document.getElementById('linkInput').addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && e.ctrlKey) {
-                processBypass();
-            }
+            if (e.key === 'Enter' && e.ctrlKey) processBypass();
         });
         
-        console.log('Tool siap digunakan!');
+        console.log('Tool siap digunakan! Support Platoboost, Platorelay, Linkvertise, dll');
     </script>
 </body>
 </html>
